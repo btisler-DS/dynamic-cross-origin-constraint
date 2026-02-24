@@ -40,6 +40,9 @@ def compute_reward(
     reached_target: bool = False,
     survival_bonus: float = 0.1,
     signal_type: int = 0,
+    declare_cost: float = 1.0,
+    query_cost: float = 1.5,
+    respond_cost: float = 0.8,
 ) -> float:
     """Compute Landauer-inspired reward with communication tax.
 
@@ -52,6 +55,9 @@ def compute_reward(
     Args:
         signal_type: Protocol 1 signal type (0=DECLARE, 1=QUERY, 2=RESPOND).
                      Defaults to 0 (DECLARATIVE) — backward compatible with Run 10.
+        declare_cost: Cost multiplier for DECLARE signals (default 1.0).
+        query_cost:   Cost multiplier for QUERY signals (default 1.5).
+        respond_cost: Cost multiplier for RESPOND signals (default 0.8).
 
     The communication_tax_rate is the key tunable parameter.
     Too low → agents yell forever. Too high → agents go mute.
@@ -59,8 +65,9 @@ def compute_reward(
     # Base reward from environment
     reward = env_reward
 
-    # Communication tax with Protocol 1 type multiplier
-    type_multiplier = SIGNAL_TYPE_COSTS.get(signal_type, 1.0)
+    # Communication tax with per-condition type multiplier
+    type_costs = {0: declare_cost, 1: query_cost, 2: respond_cost}
+    type_multiplier = type_costs.get(signal_type, 1.0)
     signal_cost = communication_tax_rate * type_multiplier * signal_sent.abs().sum().item()
     reward -= signal_cost
 

@@ -52,7 +52,11 @@ class SimulationConfig:
     gamma: float = 0.99
     communication_tax_rate: float = 0.01
     survival_bonus: float = 0.1
-    protocol: int = 1  # 0=Baseline, 1=Interrogative Emergence
+    protocol: int = 1      # 0=Baseline, 1=Interrogative Emergence
+    declare_cost: float = 1.0   # DECLARE signal cost multiplier (Protocol 1)
+    query_cost: float = 1.5     # QUERY signal cost multiplier (Protocol 1)
+    respond_cost: float = 0.8   # RESPOND signal cost multiplier (Protocol 1)
+    output_dir: str = "."       # Directory for manifest and report output
 
 
 class SimulationEngine:
@@ -72,7 +76,12 @@ class SimulationEngine:
         set_all_seeds(self.config.seed)
 
         # Protocol manager — drives reward, type resolution, and epoch extras
-        self.protocol = create_protocol(self.config.protocol)
+        self.protocol = create_protocol(
+            self.config.protocol,
+            declare_cost=self.config.declare_cost,
+            query_cost=self.config.query_cost,
+            respond_cost=self.config.respond_cost,
+        )
 
         # Environment
         env_config = EnvironmentConfig(
@@ -358,18 +367,24 @@ class SimulationEngine:
 
     def _write_manifest(self, path: str) -> None:
         """Write a run summary manifest to disk."""
+        import os
         if not self.epoch_metrics:
             return
+        os.makedirs(self.config.output_dir, exist_ok=True)
+        full_path = os.path.join(self.config.output_dir, path)
         manifest = {
             "protocol": self.config.protocol,
             "seed": self.config.seed,
+            "declare_cost": self.config.declare_cost,
+            "query_cost": self.config.query_cost,
+            "respond_cost": self.config.respond_cost,
             "epochs_total": len(self.epoch_metrics),
             "final_metrics": self._extract_final_metrics(self.epoch_metrics[-1]),
             "crystallization_epoch": self._find_crystallization_epoch(self.epoch_metrics),
             "phase_transitions": self._detect_phase_transitions(self.epoch_metrics),
             "performance_stats": self._compute_performance_stats(self.epoch_metrics),
         }
-        with open(path, "w") as f:
+        with open(full_path, "w") as f:
             json.dump(manifest, f, indent=2)
 
     def _extract_final_metrics(self, last_epoch: dict) -> dict:
@@ -495,6 +510,14 @@ if __name__ == "__main__":
     parser.add_argument("--episodes", type=int, default=5)
     parser.add_argument("--protocol", type=int, default=1, choices=[0, 1],
                         help="0=Baseline (Run 10 behaviour), 1=Interrogative Emergence")
+    parser.add_argument("--declare-cost", type=float, default=1.0,
+                        help="DECLARE signal cost multiplier (Protocol 1)")
+    parser.add_argument("--query-cost", type=float, default=1.5,
+                        help="QUERY signal cost multiplier (Protocol 1)")
+    parser.add_argument("--respond-cost", type=float, default=0.8,
+                        help="RESPOND signal cost multiplier (Protocol 1)")
+    parser.add_argument("--output-dir", type=str, default=".",
+                        help="Directory for manifest and report output")
     args = parser.parse_args()
 
     def print_metrics(m: dict) -> None:
@@ -517,6 +540,10 @@ if __name__ == "__main__":
         num_epochs=args.epochs,
         episodes_per_epoch=args.episodes,
         protocol=args.protocol,
+        declare_cost=args.declare_cost,
+        query_cost=args.query_cost,
+        respond_cost=args.respond_cost,
+        output_dir=args.output_dir,
     )
     engine = SimulationEngine(config=config, epoch_callback=print_metrics)
     engine.run()

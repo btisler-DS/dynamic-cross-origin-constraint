@@ -122,9 +122,25 @@ class Protocol1(ProtocolBase):
 
     Agents learn to distinguish DECLARATIVE / INTERROGATIVE / RESPONSE signals
     via a 3-way type head trained jointly with REINFORCE.
+
+    Cost multipliers are configurable to support the five preregistered conditions:
+        Baseline:      declare=1.0, query=1.5, respond=0.8
+        Low Pressure:  declare=1.0, query=1.2, respond=0.9
+        High Pressure: declare=1.0, query=3.0, respond=0.5
+        Extreme:       declare=1.0, query=5.0, respond=0.3
     """
 
     protocol_id = 1
+
+    def __init__(
+        self,
+        declare_cost: float = 1.0,
+        query_cost: float = 1.5,
+        respond_cost: float = 0.8,
+    ) -> None:
+        self.declare_cost = declare_cost
+        self.query_cost = query_cost
+        self.respond_cost = respond_cost
 
     def get_tau(self, epoch: int) -> float:
         return get_tau(epoch)
@@ -157,6 +173,9 @@ class Protocol1(ProtocolBase):
             reached_target=reached_target,
             survival_bonus=survival_bonus,
             signal_type=signal_type,
+            declare_cost=self.declare_cost,
+            query_cost=self.query_cost,
+            respond_cost=self.respond_cost,
         )
 
     def compute_epoch_extras(
@@ -183,8 +202,19 @@ PROTOCOL_REGISTRY: dict[int, type[ProtocolBase]] = {
 }
 
 
-def create_protocol(protocol_id: int) -> ProtocolBase:
+def create_protocol(
+    protocol_id: int,
+    declare_cost: float = 1.0,
+    query_cost: float = 1.5,
+    respond_cost: float = 0.8,
+) -> ProtocolBase:
     """Instantiate a protocol by ID.
+
+    Args:
+        protocol_id:  0=Baseline, 1=Interrogative Emergence.
+        declare_cost: DECLARE signal cost multiplier (Protocol 1 only).
+        query_cost:   QUERY signal cost multiplier (Protocol 1 only).
+        respond_cost: RESPOND signal cost multiplier (Protocol 1 only).
 
     Raises:
         ValueError: If protocol_id is not in PROTOCOL_REGISTRY.
@@ -193,5 +223,11 @@ def create_protocol(protocol_id: int) -> ProtocolBase:
         raise ValueError(
             f"Unknown protocol: {protocol_id}. "
             f"Valid IDs: {sorted(PROTOCOL_REGISTRY)}"
+        )
+    if protocol_id == 1:
+        return Protocol1(
+            declare_cost=declare_cost,
+            query_cost=query_cost,
+            respond_cost=respond_cost,
         )
     return PROTOCOL_REGISTRY[protocol_id]()
