@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Data (large files — keep locally, not in repo)
+data/reports/*.pdf
+data/weights/*.pt
+backend/*.pt
+backend/*.db
+*.db
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Alembic versions (committed separately if needed)
+# backend/alembic/versions/
