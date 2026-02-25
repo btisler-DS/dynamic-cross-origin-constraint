@@ -10,6 +10,9 @@ Working documents supporting the Δ-Variable Theory of Interrogative Emergence.
 |------|-------------|
 | [`counter-wave-discrimination.md`](counter-wave-discrimination.md) | Three competing hypotheses for the full-survival DECLARE spikes observed in Run 11, with six discriminating experiments |
 | [`menu of concrete experiments.docx`](menu%20of%20concrete%20experiments.docx) | Post-confirmatory experimental roadmap — 17 experiments across 6 categories |
+| [`menu of concrete experiments extended.docx`](menu%20of%20concrete%20experiments%20extended.docx) | Extended menu with foundational framing questions — null model, measurement definitions, falsifiability conditions |
+| [`foundational-questions-answered.md`](foundational-questions-answered.md) | Paper-ready answers to all 10 question clusters in the extended menu (null model, QRC rationale, crystallization definition, falsifiability, generalizability) |
+| [`response-to-anna-assessment.md`](response-to-anna-assessment.md) | Formal response to AnnA agent's structural assessment — scope boundary between approximation and instantiation |
 
 These documents are **post-pilot-data** working notes. They are not part of the
 locked preregistration. Per the OSF commitment, they will be reported as exploratory
