@@ -1,0 +1,198 @@
+{
+  "protocol": 1,
+  "seed": 6,
+  "declare_cost": 1.0,
+  "query_cost": 5.0,
+  "respond_cost": 0.3,
+  "epochs_total": 500,
+  "final_metrics": {
+    "survival_rate": 0.0,
+    "target_reached_rate": 0.0,
+    "energy_roi": 0.0,
+    "type_entropy": 0.12458161903028367,
+    "qrc": 1.0
+  },
+  "crystallization_epoch": 31,
+  "phase_transitions": [
+    {
+      "epoch": 38,
+      "entropy_before": 0.915,
+      "entropy_after": 0.854,
+      "delta": 0.061
+    },
+    {
+      "epoch": 45,
+      "entropy_before": 0.9256,
+      "entropy_after": 0.875,
+      "delta": 0.0506
+    },
+    {
+      "epoch": 48,
+      "entropy_before": 0.8863,
+      "entropy_after": 0.8334,
+      "delta": 0.0529
+    },
+    {
+      "epoch": 59,
+      "entropy_before": 0.8614,
+      "entropy_after": 0.8063,
+      "delta": 0.0551
+    },
+    {
+      "epoch": 78,
+      "entropy_before": 0.8183,
+      "entropy_after": 0.7469,
+      "delta": 0.0715
+    },
+    {
+      "epoch": 80,
+      "entropy_before": 0.8456,
+      "entropy_after": 0.7694,
+      "delta": 0.0762
+    },
+    {
+      "epoch": 89,
+      "entropy_before": 0.8074,
+      "entropy_after": 0.7286,
+      "delta": 0.0789
+    },
+    {
+      "epoch": 108,
+      "entropy_before": 0.7233,
+      "entropy_after": 0.672,
+      "delta": 0.0513
+    },
+    {
+      "epoch": 129,
+      "entropy_before": 0.5493,
+      "entropy_after": 0.4896,
+      "delta": 0.0597
+    },
+    {
+      "epoch": 131,
+      "entropy_before": 0.4737,
+      "entropy_after": 0.418,
+      "delta": 0.0557
+    },
+    {
+      "epoch": 132,
+      "entropy_before": 0.418,
+      "entropy_after": 0.357,
+      "delta": 0.061
+    },
+    {
+      "epoch": 142,
+      "entropy_before": 0.3485,
+      "entropy_after": 0.2518,
+      "delta": 0.0968
+    },
+    {
+      "epoch": 148,
+      "entropy_before": 0.3773,
+      "entropy_after": 0.3218,
+      "delta": 0.0555
+    },
+    {
+      "epoch": 169,
+      "entropy_before": 0.5338,
+      "entropy_after": 0.4763,
+      "delta": 0.0575
+    },
+    {
+      "epoch": 213,
+      "entropy_before": 0.689,
+      "entropy_after": 0.6162,
+      "delta": 0.0728
+    },
+    {
+      "epoch": 220,
+      "entropy_before": 0.6834,
+      "entropy_after": 0.6121,
+      "delta": 0.0713
+    },
+    {
+      "epoch": 234,
+      "entropy_before": 0.6349,
+      "entropy_after": 0.5741,
+      "delta": 0.0609
+    },
+    {
+      "epoch": 240,
+      "entropy_before": 0.5698,
+      "entropy_after": 0.5076,
+      "delta": 0.0623
+    },
+    {
+      "epoch": 325,
+      "entropy_before": 0.4386,
+      "entropy_after": 0.3815,
+      "delta": 0.0571
+    },
+    {
+      "epoch": 332,
+      "entropy_before": 0.3567,
+      "entropy_after": 0.2846,
+      "delta": 0.0721
+    },
+    {
+      "epoch": 434,
+      "entropy_before": 0.3053,
+      "entropy_after": 0.2511,
+      "delta": 0.0543
+    },
+    {
+      "epoch": 442,
+      "entropy_before": 0.2246,
+      "entropy_after": 0.1705,
+      "delta": 0.0541
+    },
+    {
+      "epoch": 460,
+      "entropy_before": 0.4343,
+      "entropy_after": 0.3729,
+      "delta": 0.0614
+    },
+    {
+      "epoch": 465,
+      "entropy_before": 0.4321,
+      "entropy_after": 0.3771,
+      "delta": 0.0551
+    },
+    {
+      "epoch": 484,
+      "entropy_before": 0.3446,
+      "entropy_after": 0.2646,
+      "delta": 0.0799
+    },
+    {
+      "epoch": 487,
+      "entropy_before": 0.2634,
+      "entropy_after": 0.2107,
+      "delta": 0.0527
+    },
+    {
+      "epoch": 489,
+      "entropy_before": 0.2967,
+      "entropy_after": 0.221,
+      "delta": 0.0757
+    },
+    {
+      "epoch": 495,
+      "entropy_before": 0.2198,
+      "entropy_after": 0.1295,
+      "delta": 0.0903
+    },
+    {
+      "epoch": 499,
+      "entropy_before": 0.2058,
+      "entropy_after": 0.1246,
+      "delta": 0.0812
+    }
+  ],
+  "performance_stats": {
+    "avg_survival_rate": 0.1448,
+    "avg_target_rate": 0.1448,
+    "max_survival_rate": 1.0,
+    "max_target_rate": 1.0
+  }
+}

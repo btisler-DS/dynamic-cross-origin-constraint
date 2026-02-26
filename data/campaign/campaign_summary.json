@@ -1,0 +1,668 @@
+{
+  "preregistration_doi": "https://doi.org/10.5281/zenodo.18738379",
+  "preregistration_sha256": "7edc9113e39afb2dce430eb77802d5a6c10988e269eb823ae30e5508b12a8d6a",
+  "campaign_start": "2026-02-24T07:05:44.621971",
+  "campaign_end": "2026-02-26T03:19:48.160159",
+  "elapsed_s": 159243.5,
+  "total_runs": 75,
+  "completed": 75,
+  "failed": 0,
+  "conditions": {
+    "baseline": {
+      "protocol": 1,
+      "declare_cost": 1.0,
+      "query_cost": 1.5,
+      "respond_cost": 0.8,
+      "description": "Primary confirmatory condition"
+    },
+    "low_pressure": {
+      "protocol": 1,
+      "declare_cost": 1.0,
+      "query_cost": 1.2,
+      "respond_cost": 0.9,
+      "description": "Cost sensitivity lower bound"
+    },
+    "high_pressure": {
+      "protocol": 1,
+      "declare_cost": 1.0,
+      "query_cost": 3.0,
+      "respond_cost": 0.5,
+      "description": "Cost sensitivity upper bound"
+    },
+    "extreme": {
+      "protocol": 1,
+      "declare_cost": 1.0,
+      "query_cost": 5.0,
+      "respond_cost": 0.3,
+      "description": "Falsification boundary"
+    },
+    "control": {
+      "protocol": 0,
+      "declare_cost": 1.0,
+      "query_cost": 1.5,
+      "respond_cost": 0.8,
+      "description": "Query-disabled reference (Protocol 0)"
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "epochs": 500,
+  "episodes": 10,
+  "results": [
+    {
+      "condition": "baseline",
+      "seed": 14,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 25490.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_14"
+    },
+    {
+      "condition": "baseline",
+      "seed": 1,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 26950.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_01"
+    },
+    {
+      "condition": "baseline",
+      "seed": 8,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31206.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_08"
+    },
+    {
+      "condition": "baseline",
+      "seed": 0,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31252.5,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_00"
+    },
+    {
+      "condition": "baseline",
+      "seed": 7,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31295.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_07"
+    },
+    {
+      "condition": "baseline",
+      "seed": 4,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31351.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_04"
+    },
+    {
+      "condition": "baseline",
+      "seed": 5,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31377.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_05"
+    },
+    {
+      "condition": "baseline",
+      "seed": 9,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31539.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_09"
+    },
+    {
+      "condition": "baseline",
+      "seed": 3,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31597.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_03"
+    },
+    {
+      "condition": "baseline",
+      "seed": 10,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31834.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_10"
+    },
+    {
+      "condition": "baseline",
+      "seed": 2,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31892.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_02"
+    },
+    {
+      "condition": "baseline",
+      "seed": 12,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32022.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_12"
+    },
+    {
+      "condition": "baseline",
+      "seed": 6,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32233.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_06"
+    },
+    {
+      "condition": "baseline",
+      "seed": 11,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32819.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_11"
+    },
+    {
+      "condition": "baseline",
+      "seed": 13,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33796.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\baseline\\seed_13"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 0,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34043.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_00"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 1,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34918.6,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_01"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 4,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33323.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_04"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 2,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33532.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_02"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 5,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33510.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_05"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 6,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33533.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_06"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 7,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34054.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_07"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 12,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33543.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_12"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 11,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33926.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_11"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 9,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34220.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_09"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 10,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34188.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_10"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 8,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34568.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_08"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 14,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 34442.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_14"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 3,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 38731.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_03"
+    },
+    {
+      "condition": "low_pressure",
+      "seed": 13,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 38452.5,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\low_pressure\\seed_13"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 0,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30926.6,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_00"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 1,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30986.5,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_01"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 4,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30109.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_04"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 2,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30419.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_02"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 3,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30591.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_03"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 5,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31249.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_05"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 10,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30288.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_10"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 6,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31308.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_06"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 9,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30886.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_09"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 8,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31632.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_08"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 7,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31826.6,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_07"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 11,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31819.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_11"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 12,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31344.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_12"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 13,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30483.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_13"
+    },
+    {
+      "condition": "high_pressure",
+      "seed": 14,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30897.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\high_pressure\\seed_14"
+    },
+    {
+      "condition": "extreme",
+      "seed": 0,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32476.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_00"
+    },
+    {
+      "condition": "extreme",
+      "seed": 1,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32617.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_01"
+    },
+    {
+      "condition": "extreme",
+      "seed": 2,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31719.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_02"
+    },
+    {
+      "condition": "extreme",
+      "seed": 4,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32944.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_04"
+    },
+    {
+      "condition": "extreme",
+      "seed": 3,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33477.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_03"
+    },
+    {
+      "condition": "extreme",
+      "seed": 5,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32626.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_05"
+    },
+    {
+      "condition": "extreme",
+      "seed": 9,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 31803.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_09"
+    },
+    {
+      "condition": "extreme",
+      "seed": 6,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33236.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_06"
+    },
+    {
+      "condition": "extreme",
+      "seed": 10,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32489.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_10"
+    },
+    {
+      "condition": "extreme",
+      "seed": 7,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33729.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_07"
+    },
+    {
+      "condition": "extreme",
+      "seed": 8,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 33917.5,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_08"
+    },
+    {
+      "condition": "extreme",
+      "seed": 11,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32930.6,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_11"
+    },
+    {
+      "condition": "extreme",
+      "seed": 12,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32401.4,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_12"
+    },
+    {
+      "condition": "extreme",
+      "seed": 13,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32382.4,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_13"
+    },
+    {
+      "condition": "extreme",
+      "seed": 14,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 32775.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\extreme\\seed_14"
+    },
+    {
+      "condition": "control",
+      "seed": 0,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30824.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_00"
+    },
+    {
+      "condition": "control",
+      "seed": 1,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30340.8,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_01"
+    },
+    {
+      "condition": "control",
+      "seed": 2,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 30427.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_02"
+    },
+    {
+      "condition": "control",
+      "seed": 3,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 29040.4,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_03"
+    },
+    {
+      "condition": "control",
+      "seed": 5,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 28986.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_05"
+    },
+    {
+      "condition": "control",
+      "seed": 7,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 28621.9,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_07"
+    },
+    {
+      "condition": "control",
+      "seed": 6,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 28858.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_06"
+    },
+    {
+      "condition": "control",
+      "seed": 8,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 28224.7,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_08"
+    },
+    {
+      "condition": "control",
+      "seed": 4,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 29871.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_04"
+    },
+    {
+      "condition": "control",
+      "seed": 11,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 27819.3,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_11"
+    },
+    {
+      "condition": "control",
+      "seed": 10,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 27925.4,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_10"
+    },
+    {
+      "condition": "control",
+      "seed": 9,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 28237.1,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_09"
+    },
+    {
+      "condition": "control",
+      "seed": 12,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 26929.2,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_12"
+    },
+    {
+      "condition": "control",
+      "seed": 13,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 26239.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_13"
+    },
+    {
+      "condition": "control",
+      "seed": 14,
+      "status": "ok",
+      "returncode": 0,
+      "elapsed_s": 24298.0,
+      "output_dir": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\campaign\\control\\seed_14"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "protocol": 1,
+  "seed": 5,
+  "declare_cost": 1.0,
+  "query_cost": 3.0,
+  "respond_cost": 0.5,
+  "epochs_total": 500,
+  "final_metrics": {
+    "survival_rate": 0.3,
+    "target_reached_rate": 0.3,
+    "energy_roi": 0.001063452676355902,
+    "type_entropy": 0.88132079009608,
+    "qrc": 0.9578313253012049
+  },
+  "crystallization_epoch": 101,
+  "phase_transitions": [
+    {
+      "epoch": 85,
+      "entropy_before": 1.0287,
+      "entropy_after": 0.9715,
+      "delta": 0.0572
+    },
+    {
+      "epoch": 89,
+      "entropy_before": 1.0165,
+      "entropy_after": 0.9657,
+      "delta": 0.0508
+    },
+    {
+      "epoch": 111,
+      "entropy_before": 0.9158,
+      "entropy_after": 0.8429,
+      "delta": 0.0729
+    },
+    {
+      "epoch": 116,
+      "entropy_before": 0.7889,
+      "entropy_after": 0.7313,
+      "delta": 0.0576
+    },
+    {
+      "epoch": 118,
+      "entropy_before": 0.7663,
+      "entropy_after": 0.6508,
+      "delta": 0.1155
+    },
+    {
+      "epoch": 129,
+      "entropy_before": 0.81,
+      "entropy_after": 0.7494,
+      "delta": 0.0605
+    },
+    {
+      "epoch": 139,
+      "entropy_before": 0.7405,
+      "entropy_after": 0.6662,
+      "delta": 0.0743
+    },
+    {
+      "epoch": 147,
+      "entropy_before": 0.7511,
+      "entropy_after": 0.6819,
+      "delta": 0.0692
+    },
+    {
+      "epoch": 151,
+      "entropy_before": 0.8256,
+      "entropy_after": 0.7587,
+      "delta": 0.0668
+    },
+    {
+      "epoch": 159,
+      "entropy_before": 0.7498,
+      "entropy_after": 0.6377,
+      "delta": 0.1121
+    },
+    {
+      "epoch": 221,
+      "entropy_before": 0.6955,
+      "entropy_after": 0.6342,
+      "delta": 0.0613
+    },
+    {
+      "epoch": 224,
+      "entropy_before": 0.6879,
+      "entropy_after": 0.6285,
+      "delta": 0.0593
+    },
+    {
+      "epoch": 233,
+      "entropy_before": 0.6817,
+      "entropy_after": 0.6104,
+      "delta": 0.0713
+    },
+    {
+      "epoch": 236,
+      "entropy_before": 0.6662,
+      "entropy_after": 0.6023,
+      "delta": 0.0639
+    },
+    {
+      "epoch": 253,
+      "entropy_before": 0.7159,
+      "entropy_after": 0.6463,
+      "delta": 0.0696
+    },
+    {
+      "epoch": 262,
+      "entropy_before": 0.7425,
+      "entropy_after": 0.6724,
+      "delta": 0.0701
+    },
+    {
+      "epoch": 265,
+      "entropy_before": 0.7358,
+      "entropy_after": 0.6805,
+      "delta": 0.0553
+    },
+    {
+      "epoch": 274,
+      "entropy_before": 0.7627,
+      "entropy_after": 0.6621,
+      "delta": 0.1006
+    },
+    {
+      "epoch": 279,
+      "entropy_before": 0.6872,
+      "entropy_after": 0.6366,
+      "delta": 0.0505
+    },
+    {
+      "epoch": 283,
+      "entropy_before": 0.6954,
+      "entropy_after": 0.6338,
+      "delta": 0.0616
+    },
+    {
+      "epoch": 311,
+      "entropy_before": 0.6013,
+      "entropy_after": 0.5427,
+      "delta": 0.0586
+    },
+    {
+      "epoch": 422,
+      "entropy_before": 0.8169,
+      "entropy_after": 0.7204,
+      "delta": 0.0965
+    },
+    {
+      "epoch": 424,
+      "entropy_before": 0.7814,
+      "entropy_after": 0.7252,
+      "delta": 0.0562
+    },
+    {
+      "epoch": 452,
+      "entropy_before": 0.7123,
+      "entropy_after": 0.6564,
+      "delta": 0.0559
+    },
+    {
+      "epoch": 455,
+      "entropy_before": 0.7047,
+      "entropy_after": 0.6415,
+      "delta": 0.0631
+    },
+    {
+      "epoch": 485,
+      "entropy_before": 0.8895,
+      "entropy_after": 0.8353,
+      "delta": 0.0542
+    }
+  ],
+  "performance_stats": {
+    "avg_survival_rate": 0.1768,
+    "avg_target_rate": 0.1768,
+    "max_survival_rate": 1.0,
+    "max_target_rate": 1.0
+  }
+}

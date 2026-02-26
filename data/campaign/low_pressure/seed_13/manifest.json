@@ -1,0 +1,30 @@
+{
+  "protocol": 1,
+  "seed": 13,
+  "declare_cost": 1.0,
+  "query_cost": 1.2,
+  "respond_cost": 0.9,
+  "epochs_total": 500,
+  "final_metrics": {
+    "survival_rate": 0.0,
+    "target_reached_rate": 0.0,
+    "energy_roi": 0.0,
+    "type_entropy": 0.940209064183682,
+    "qrc": 0.8525179856115108
+  },
+  "crystallization_epoch": 248,
+  "phase_transitions": [
+    {
+      "epoch": 225,
+      "entropy_before": 1.0,
+      "entropy_after": 0.9461,
+      "delta": 0.0539
+    }
+  ],
+  "performance_stats": {
+    "avg_survival_rate": 0.2,
+    "avg_target_rate": 0.2,
+    "max_survival_rate": 0.9,
+    "max_target_rate": 0.9
+  }
+}

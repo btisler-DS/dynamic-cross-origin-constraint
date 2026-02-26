@@ -1,0 +1,23 @@
+{
+  "protocol": 0,
+  "seed": 10,
+  "declare_cost": 1.0,
+  "query_cost": 1.5,
+  "respond_cost": 0.8,
+  "epochs_total": 500,
+  "final_metrics": {
+    "survival_rate": 0.6,
+    "target_reached_rate": 0.6,
+    "energy_roi": 0.0031864046733935205,
+    "type_entropy": null,
+    "qrc": null
+  },
+  "crystallization_epoch": null,
+  "phase_transitions": [],
+  "performance_stats": {
+    "avg_survival_rate": 0.1932,
+    "avg_target_rate": 0.1932,
+    "max_survival_rate": 1.0,
+    "max_target_rate": 1.0
+  }
+}
