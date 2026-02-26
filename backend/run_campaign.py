@@ -126,7 +126,7 @@ def build_runs(
 
 def build_command(spec: RunSpec) -> list[str]:
     return [
-        sys.executable, "-m", "simulation.engine",
+        sys.executable, "-u", "-m", "simulation.engine",
         "--seed",         str(spec.seed),
         "--epochs",       str(spec.epochs),
         "--episodes",     str(spec.episodes),

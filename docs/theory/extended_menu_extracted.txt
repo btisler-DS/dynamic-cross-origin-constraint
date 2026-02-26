@@ -1,0 +1,397 @@
+Menu of Concrete Experiments
+menu of concrete experiments that can be run on current existing harnesses (Synapse + Cross-Origin-Constraint style). Each is phrased as: intervention → prediction → what to measure → pass/fail signature.
+These experiments test whether coordination under constraint exhibits nonlinear, path-dependent, capacity-bound structural dynamics, or whether all observed order can be explained as smooth reward optimization under cost tuning.
+A. Phase transition and “crystallization” tests
+Tax sweep (critical threshold mapping)
+Intervention: Sweep communication_tax_rate across a wide range; repeat runs with different seeds.
+Prediction: A sharp regime change (noise → protocol) within a narrow band.
+Measure: QRC, TE asymmetry, message entropy, mutual information, survival/viability, time-to-lock.
+Signature: Bimodal distribution + “cliff” band; stable protocol appears only above/below a critical window (depending on your definition).
+What it tests:Whether crystallization emerges via a phase transition or smooth optimization.
+Why it matters:A sharp regime change (noise → protocol) suggests constraint geometry.Smooth monotonic improvement suggests reward tuning.
+Distinguishes:• Structural emergencevs• Gradient-based performance scaling
+Weakens Δ-claim if:QRC and entropy change smoothly with cost without regime discontinuity.
+Possible outcomes
+Smooth monotonic improvement → consistent with reward gradient scaling.
+Bimodal cliff band → consistent with phase-transition-like behavior.
+New questions generated
+If smooth:
+Is the system simply optimizing cost-benefit ratios?
+Are we measuring the wrong order parameter?
+If sharp:
+What parameter defines the critical band?
+Does the location of the threshold scale with agent complexity?
+Hysteresis test
+Intervention: Increase tax slowly to induce crystallization, then decrease tax slowly.
+Prediction: If protocol is structural residue, it persists past the threshold that created it.
+Measure: Persistence of codebook / QRC under reverse sweep.
+Signature: Different “up” vs “down” transition points (hysteresis loop).
+What it tests:Whether protocol formation leaves structural residue.
+Why it matters:If protocol persists after lowering tax, structure was formed.If it dissolves immediately, it was cost-chasing behavior.
+Distinguishes:• Residual constraintvs• Policy equilibrium tied to current reward gradient
+Weakens Δ-claim if:Upward and downward tax sweeps follow identical curves.
+Possible outcomes
+Identical up/down curves → no residual structure.
+Different thresholds → path dependence.
+New questions
+If hysteresis appears:
+What internal state carries residue?
+Can residue be localized or quantified?
+If no hysteresis:
+Is crystallization purely reward-aligned equilibrium?
+Metastability under intermittent pressure
+Intervention: Alternate high-tax and low-tax epochs (square wave).
+Prediction: Either (a) protocol survives as residue, or (b) it dissolves when pressure relaxes.
+Measure: Protocol retention, reacquisition time, drift.
+Signature: Fast reacquisition implies stored structure; slow reacquisition implies it was just optimization chasing reward.
+What it tests:Whether crystallized protocol survives temporary pressure relaxation.
+Why it matters:Structural residue should allow rapid reacquisition.
+Distinguishes:• Stored structural dependencyvs• Re-optimization from scratch
+Weakens Δ-claim if:Each pressure cycle requires full relearning.
+Possible outcomes
+Rapid reacquisition → stored structural trace.
+Full relearning each cycle → optimization chasing.
+New questions
+Does reacquisition time shrink with repetition?
+Is there a decay constant for structural memory?
+Noise injection at the boundary
+Intervention: Add controlled channel noise only near the critical tax band.
+Prediction: True phase transitions are robust; brittle ones collapse.
+Measure: Probability of crystallization vs noise level; TE/QRC stability.
+Signature: A stable protocol region should shrink smoothly, not vanish instantly.
+What it tests:Robustness of crystallization near critical threshold.
+Why it matters:True phase transitions degrade smoothly under perturbation.
+Distinguishes:• Stable attractor basinvs• Fragile reward peak
+Weakens Δ-claim if:Small noise instantly eliminates protocol.
+Possible outcomes
+Smooth degradation → basin stability.
+Instant collapse → brittle tuning.
+New questions
+How wide is the stability basin?
+Does robustness scale with communication cost?
+B. Locality, non-substitutability, and delegation tests (AnnA stress)
+Local failure cannot be offset by distant capacity
+Intervention: Partition the environment into two localities; starve one side’s capacity while over-provisioning the other.
+Prediction: Global “score” can look fine while local coherence fails—if locality is binding.
+Measure: Local survival/viability, local saturation flags, cross-local help attempts.
+Signature: Local collapse despite global success signals non-substitutability is real.
+What it tests:Locality constraint binding.
+Why it matters:AnnA requires non-substitutability of local failure.
+Distinguishes:• True localityvs• Hidden global compensation
+Weakens Δ-claim if:Global performance masks local breakdown.
+Possible outcomes
+Local collapse despite global success → locality binding.
+Global compensation stabilizes → hidden substitution.
+New questions
+How far does constraint propagate?
+What defines a locality boundary?
+Broker privilege audit (Agent C as potential violation)
+Intervention: Give Agent C extra bandwidth or compute, then remove it; compare to symmetric constraints.
+Prediction: If C becomes a privileged execution path, the system “cheats” through hidden delegation.
+Measure: TE centrality, dependency graphs, ablation impact, entropy collapse location.
+Signature: If removing C destroys coherence completely, you likely built a hub, not an emergent local protocol.
+What it tests:Whether Agent C becomes a privileged global coordinator.
+Why it matters:Δ-structure requires regulation without command.
+Distinguishes:• Emergent distributed protocolvs• Centralized hierarchy
+Weakens Δ-claim if:Removing C destroys coherence entirely.
+Possible outcomes
+Removal collapses system → centralization.
+Removal degrades but survives → distributed.
+New questions
+Does centrality emerge naturally under certain tax regimes?
+Is hub formation itself pressure-dependent?
+Adjacency vs abstraction propagation
+Intervention: Allow messages only to neighbors (graph adjacency), then allow global broadcast.
+Prediction: If constraint propagates through adjacency, broadcast should change the qualitative structure.
+Measure: Topology-conditioned TE, emergence time, protocol complexity.
+Signature: Broadcast causing “instant coherence” suggests substitution/globalization is doing the work.
+What it tests:Whether constraint propagates locally or globally.
+Why it matters:Broadcast coherence suggests substitution violation.
+Distinguishes:• Constraint geometryvs• Central broadcast solution
+Weakens Δ-claim if:Global broadcast yields instant stable coherence.
+Possible outcomes
+Broadcast dramatically stabilizes → locality was binding.
+Minimal change → locality not essential.
+New questions
+Does broadcast increase fragility later?
+Does global visibility reduce memory requirements?
+C. “Representation not required” vs “representation sneaks in” tests
+Memory depth scaling test (Barenholtz claim made empirical)
+Intervention: Sweep context window / recurrence depth / state memory size.
+Prediction: Minimum memory depth exists for stable protocol at given hidden-depth setting.
+Measure: Emergence probability, time-to-lock, error under partial observability.
+Signature: A knee point: below it no stable protocol; above it stability increases sharply.
+What it tests:Minimum memory depth required for Δ-stability.
+Why it matters:Hidden structure depth should impose memory threshold.
+Distinguishes:• Structural depth requirementvs• Shallow pattern matching sufficiency
+Weakens Δ-claim if:Protocol remains stable even with minimal memory.
+Possible outcomes
+Sharp memory knee → structural depth requirement.
+Stability at shallow depth → local pattern sufficiency.
+New questions
+Does required depth scale with environmental complexity?
+Is depth equivalent to internal modeling?
+Partial observability ladder
+Intervention: Systematically reduce observability (mask channels, downsample sensors, occlude states).
+Prediction: As observability drops, required memory/communication cost rises.
+Measure: Communication volume (even under tax), QRC success, saturation frequency.
+Signature: Memory/communication compensates for missing state—directly testing “history is needed because you can’t see everything.”
+What it tests:Whether Δ compensates for missing information.
+Why it matters:If history substitutes for missing state, communication must increase.
+Distinguishes:• Δ as structural dependencyvs• Redundant policy shortcuts
+Weakens Δ-claim if:Reduced visibility does not increase communication or instability.
+Possible outcomes
+Communication rises as visibility drops → structural compensation.
+No change → shallow policy.
+New questions
+Is there a tradeoff curve between observability and communication?
+Does increased cost suppress compensation?
+Counterfactual generalization test (combinatorial novelty)
+Intervention: Train on primitives A and B separately; test on A+B sequences never seen together.
+Prediction: If sequential structure captures hidden dynamics, novel but physically/behaviorally realizable combos should work.
+Measure: Viability, compositional success, protocol reuse vs new code emergence.
+Signature: Successful compositional generalization without retraining.
+What it tests:Whether learned protocol generalizes compositionally.
+Why it matters:Structural sequence capture should enable novel recombinations.
+Distinguishes:• Structural generativityvs• Memorized mappings
+Weakens Δ-claim if:Novel combinations collapse viability.
+Possible outcomes
+Viable novel combinations → structural abstraction.
+Collapse under novelty → surface mapping.
+New questions
+Does compositional success require certain entropy levels?
+Is generativity cost-sensitive?
+D. Capacity, saturation, and irreversible loss tests (AnnA core)
+Saturation forcing and visible failure
+Intervention: Force sustained saturation (insufficient oxygen/energy) while preventing “metric masking” (no reward hacks).
+Prediction: Coherence must fail visibly; delayed collapse doesn’t negate saturation.
+Measure: Saturation flags, breakdown markers, QRC collapse, recovery probability.
+Signature: Visible collapse at capacity exceedance; if it stays “stable,” you likely have an escape hatch.
+What it tests:Whether capacity limits are binding.
+Why it matters:Coherence must fail visibly when capacity exceeded.
+Distinguishes:• Finite constraint systemvs• Hidden compensatory mechanism
+Weakens Δ-claim if:System maintains stability under forced saturation.
+Possible outcomes
+Visible collapse → capacity real.
+Stability persists → hidden escape.
+New questions
+What parameter defines collapse onset?
+Is collapse predictable from entropy trend?
+Irreversibility test
+Intervention: Overload until breakdown, then restore resources to pre-overload levels.
+Prediction: If loss is irreversible, recovery does not fully restore prior capacity/protocol.
+Measure: Recovery curve, residual protocol drift, increased future fragility.
+Signature: Post-event system is permanently altered (capacity/history encoded).
+What it tests:Whether breakdown encodes permanent structural change.
+Why it matters:AnnA requires loss to be irreversible.
+Distinguishes:• History-bearing structurevs• Resettable optimization landscape
+Weakens Δ-claim if:System returns fully to pre-collapse state.
+Possible outcomes
+Permanent drift → history-bearing structure.
+Full reset → reversible optimization.
+New questions
+Is drift measurable as capacity shrinkage?
+Does repeated overload accelerate fragility?
+Redistribution ≠ resolution
+Intervention: Enable “redistribution” actions (e.g., shifting load to other agents/localities) without increasing total capacity.
+Prediction: You can move pressure, but unresolved deviation persists and resurfaces.
+Measure: Where/when failure occurs after redistribution; total deviation integral over time.
+Signature: Delayed failure migration rather than true stabilization.
+What it tests:Whether shifting pressure eliminates dependency or merely delays it.
+Why it matters:Redistribution without resolution should propagate failure.
+Distinguishes:• Genuine Δ resolutionvs• Pressure displacement
+Weakens Δ-claim if:Redistribution permanently eliminates breakdown.
+Possible outcomes
+Failure migrates → pressure conserved.
+Stability restored → resolution achieved.
+New questions
+Is deviation conserved?
+Can total deviation integral predict failure?
+E. Causality and coupling diagnostics tests (your measurement primitives)
+Question cost as coupling primitive (QUERY→RESPONSE lock)
+Intervention: Sweep query cost and response cost independently.
+Prediction: There is a window where asking is rare but decisive, producing stronger coupling.
+Measure: QRC strength, TE directionality, “query selectivity” vs success.
+Signature: Stronger coupling at intermediate query cost (not at zero, not at infinite).
+What it tests:Nonlinear coupling window between cost and closure.
+Why it matters:Δ requires selective interrogation, not free chatter.
+Distinguishes:• Structured dependencyvs• Linear cost-performance scaling
+Weakens Δ-claim if:QRC declines monotonically with cost.
+Possible outcomes
+Intermediate window strongest → nonlinear regime.
+Monotonic decay → simple cost-performance tradeoff.
+New questions
+Is there a universal coupling window?
+Does window shift with memory depth?
+Protocol ablation taxonomy
+Intervention: Kill (a) semantics only, (b) timing only, (c) channel only, (d) agent only.
+Prediction: Load-bearing protocols fail under specific ablations; decorative chatter survives ablation.
+Measure: Differential performance collapse; TE/QRC collapse patterns.
+Signature: A “structural dependency fingerprint” unique to the true protocol.
+What it tests:Load-bearing components of the protocol.
+Why it matters:True structure should have a dependency fingerprint.
+Distinguishes:• Structural protocolvs• Decorative communication
+Weakens Δ-claim if:Ablations do not selectively collapse performance.
+Possible outcomes
+Selective collapse patterns → dependency fingerprint.
+Uniform degradation → non-specific chatter.
+New questions
+Can protocol components be hierarchically ranked?
+Does ablation increase entropy asymmetrically?
+F. Multi-agent arms race and depth-of-hidden-structure tests
+Adversarial co-evolution
+Intervention: Introduce predator/prey roles or competing objectives; allow strategy adaptation.
+Prediction: Hidden structure deepens; required memory/communication increases; protocols become more abstract.
+Measure: Protocol complexity growth, memory requirements, emergence time.
+Signature: Escalation curve: deeper dependencies appear over generations.
+What it tests:Whether hidden structure deepens under competitive pressure.
+Why it matters:If Δ scales with hidden depth, protocol complexity must grow.
+Distinguishes:• Escalating dependency depthvs• Static shallow equilibrium
+Weakens Δ-claim if:Protocol complexity plateaus under arms race.
+Possible outcomes
+Complexity escalates → depth growth.
+Plateau → shallow equilibrium.
+New questions
+Does memory requirement increase over generations?
+Does entropy stabilize at higher or lower levels?
+Deception pressure (anti-readability)
+Intervention: Penalize being predictable to the other agent while still requiring coordination with a third party.
+Prediction: Forces protocols that are locally coherent but externally opaque.
+Measure: TE patterns (pairwise vs triadic), compression metrics, detectability of “meaning” by an external decoder.
+Signature: Selective mutual intelligibility without global legibility.
+What it tests:Selective intelligibility under constrained readability.
+Why it matters:True local coherence should not require global transparency.
+Distinguishes:• Local mutual intelligibilityvs• Globally decodable signals
+Weakens Δ-claim if:Protocol collapses when external predictability penalized.
+Possible outcomes
+Pairwise coherence + external opacity → local protocol.
+Collapse → global readability necessary.
+New questions
+Can selective intelligibility be quantified?
+Does opacity correlate with entropy reduction?
+Final Observation
+Experiments 1, 2, 6, 11, and 14 together form a minimal sufficient theory battery.
+If those five survive:
+• Phase transition exists• Structural residue persists• No privileged hub• Capacity binds• Coupling window is nonlinear
+Then the Δ-claim is not a reward artifact.
+It becomes a structural necessity result.
+Minimal “starter pack” highest yield fast
+Run these first: (1) Tax sweep, (2) Hysteresis, (6) Broker privilege audit, (11) Saturation visible failure, (14) Query/Response cost sweep.
+The Core Question About the Testing
+How do you separate structural necessity from clever optimization under constrained reward?
+That is the fulcrum.
+Foundational Framing Questions
+1.1 What exactly is the null model?
+You contrast:
+“Structural emergence”vs
+“Reward gradient scaling”
+But what is the formal null?
+Is it:
+Standard MARL with communication cost?
+A specific RL architecture?
+Any differentiable optimization system?
+Without a defined null, I cannot evaluate whether the experiments discriminate.
+1.2 What is being held constant?
+Across the 17 tests:
+Are policies fixed architecture?
+Are learning rates identical?
+Is reward structure unchanged except for the intervention variable?
+If multiple parameters shift simultaneously, structural claims become ambiguous.
+1.3 Are these agents optimizing a global reward?
+If yes, then:
+How do you rule out global value shaping as explanation for apparent locality?
+How do you ensure no hidden global objective produces the observed coupling?
+If no:
+What learning mechanism is being used?
+Measurement Questions
+2.1 Why QRC?
+Why is Query-Response Coupling the right order parameter?
+What makes QRC theoretically privileged rather than one metric among many?
+2.2 Entropy of what distribution?
+When you say “H”:
+Token entropy?
+Message type entropy?
+Conditional entropy?
+Temporal entropy?
+Entropy can fall for trivial reasons. What ensures it reflects structure rather than collapse?
+2.3 How do you distinguish compression from impoverishment?
+Low entropy can mean:
+Structured protocolor
+Degenerate minimal signaling
+What diagnostic separates these?
+2.4 What defines “crystallization”?
+Is it:
+Entropy below threshold?
+Stable codebook?
+Mutual information stabilization?
+What is the formal stopping rule?
+Phase Transition Claims
+3.1 How are you testing for actual phase behavior?
+Are you:
+Checking finite-size scaling?
+Examining order parameter variance near critical band?
+Testing robustness across agent population size?
+Otherwise, “phase transition” might just mean nonlinear curve.
+3.2 Could hysteresis arise from learning inertia?
+If training is online and gradient-based, hysteresis may be learning rate artifact.
+How do you distinguish:
+Structural residuefrom
+Policy lag?
+Locality & Non-Substitutability
+4.1 Is locality enforced architecturally or emergent?
+If the environment enforces local interaction, locality isn’t tested — it’s imposed.
+If broadcast is allowed and coherence changes, how do you separate:
+Structural necessityfrom
+Information availability advantage?
+4.2 How do you detect hidden centralization?
+If an agent becomes central, is that a violation — or an emergent solution?
+Why is distributed coherence theoretically preferred?
+Capacity & Irreversibility
+5.1 What constitutes “capacity”?
+Is capacity:
+Energy budget?
+Message bandwidth?
+Computation limit?
+Memory size?
+If capacity is abstract, irreversibility may be definitional rather than discovered.
+5.2 What prevents full reset?
+If agents are retrained after overload, irreversibility may disappear.
+Are you testing:
+Structural damageor
+Policy retraining dynamics?
+Representation Questions
+6.1 How do you know representation isn’t implicitly formed?
+Even if there is no explicit world model, the recurrent state may encode one.
+What would falsify “implicit representation” explanation?
+6.2 Memory depth knee — artifact or necessity?
+If a memory threshold appears, how do you rule out:
+Optimization difficultyrather than
+Structural depth requirement?
+Generalization & Compositionality
+7.1 What counts as compositional novelty?
+Is novelty measured statistically?Or defined by semantic independence of primitives?
+If primitives share latent overlap, novelty might not be true recombination.
+Coupling Window
+8.1 Why should intermediate cost be privileged?
+Is there a formal model predicting a non-monotonic QRC curve?
+If not, the “window” may be empirical but not theoretically anchored.
+Arms Race & Depth
+9.1 How do you measure protocol complexity?
+Token variety?Compression ratio?Information flow depth?Graph topology?
+Without a complexity metric, escalation claims are narrative.
+Overarching Theoretical Questions
+These are the ones that matter most.
+10.1 Is Δ a measurable quantity or an interpretive lens?
+You speak of unresolved dependency.
+Is there a formal variable for Δ?Or is Δ inferred post hoc from communication patterns?
+10.2 What would falsify the structural account entirely?
+Not weaken.Not complicate.
+What result would make you say:
+“This is just optimization with communication cost.”
+If no such condition exists, the theory risks being unfalsifiable.
+10.3 Is this generalizable beyond this harness?
+Why should:
+These dynamics
+In this architecture
+Under these reward structures
+Generalize to cognition broadly?
