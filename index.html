@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Inquiry — The Δ-Variable Theory of Interrogative Emergence</title>
+  <meta name="description" content="Does question-asking emerge as mathematical law? The Δ-Variable Theory tests whether interrogative structures arise as necessary solutions to uncertainty management under resource constraints, independent of cognitive substrate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #09111f;
+      --surface:   #0f1a2e;
+      --surface2:  #152035;
+      --border:    #1d2f48;
+      --border2:   #263c58;
+      --text:      #d8e4f0;
+      --muted:     #6b8aa8;
+      --subtle:    #3d5a78;
+      --cyan:      #22d3ee;
+      --cyan-dim:  #0e7490;
+      --amber:     #fbbf24;
+      --amber-dim: #92400e;
+      --green:     #4ade80;
+      --green-dim: #166534;
+      --red:       #fb7185;
+      --red-dim:   #9f1239;
+      --purple:    #a78bfa;
+      --font:      'Inter', system-ui, sans-serif;
+      --mono:      'JetBrains Mono', 'Cascadia Code', monospace;
+      --radius:    8px;
+      --radius-lg: 14px;
+      --shadow:    0 4px 24px rgba(0,0,0,0.45);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ─────────────────────────────────────────────── */
+    h1, h2, h3, h4 { line-height: 1.25; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.01em; }
+    h3 { font-size: 1.15rem; }
+    h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    p  { color: var(--text); }
+    a  { color: var(--cyan); text-decoration: none; transition: opacity 0.15s; }
+    a:hover { opacity: 0.75; }
+    code { font-family: var(--mono); font-size: 0.85em; background: var(--surface2); padding: 2px 6px; border-radius: 4px; color: var(--cyan); }
+    strong { color: #e8f0fa; font-weight: 600; }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 80px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+
+    /* ── Nav ────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(9, 17, 31, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; max-width: 1020px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-brand {
+      font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em;
+      color: var(--cyan); display: flex; align-items: center; gap: 8px;
+    }
+    .nav-brand span { color: var(--text); font-weight: 400; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); opacity: 1; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 100px 0 80px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 70%);
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2);
+      color: var(--cyan); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-label::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan); animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    .hero h1 { margin-bottom: 16px; }
+    .hero h1 .delta { color: var(--cyan); }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted); max-width: 680px;
+      margin-bottom: 36px; line-height: 1.6;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
+    }
+    .badge-confirmed { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); color: var(--green); }
+    .badge-pending   { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.25); color: var(--amber); }
+    .badge-neutral   { background: rgba(255,255,255,0.05); border: 1px solid var(--border2); color: var(--muted); }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius); font-size: 0.875rem;
+      font-weight: 600; transition: all 0.15s; cursor: pointer; text-decoration: none;
+    }
+    .btn-primary { background: var(--cyan); color: #05111e; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-outline { background: transparent; border: 1px solid var(--border2); color: var(--text); }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); opacity: 1; }
+
+    /* ── Section headers ────────────────────────────────────────── */
+    .section-header { margin-bottom: 48px; }
+    .section-header h4 { margin-bottom: 8px; }
+    .section-header h2 { margin-bottom: 12px; }
+    .section-header p  { color: var(--muted); max-width: 640px; }
+
+    /* ── The Core Question ──────────────────────────────────────── */
+    .question-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .q-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px;
+    }
+    .q-card-icon {
+      font-size: 1.6rem; margin-bottom: 14px; display: block;
+    }
+    .q-card h3 { margin-bottom: 10px; font-size: 1.05rem; }
+    .q-card p  { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── Definition box ─────────────────────────────────────────── */
+    .definition-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      border-radius: var(--radius-lg); padding: 28px 32px;
+      margin: 32px 0;
+    }
+    .definition-box .def-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 10px;
+    }
+    .definition-box p { font-size: 1.05rem; color: var(--text); line-height: 1.65; }
+
+    /* ── Propositions ───────────────────────────────────────────── */
+    .propositions { display: flex; flex-direction: column; gap: 16px; margin: 32px 0; }
+    .prop {
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 20px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px;
+      align-items: start;
+    }
+    .prop-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.9rem; font-weight: 600; color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .prop-body h3 { font-size: 1rem; margin-bottom: 6px; }
+    .prop-body p  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── Falsifiability ─────────────────────────────────────────── */
+    .falsify-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0;
+    }
+    .falsify-card {
+      background: rgba(251,113,133,0.05); border: 1px solid rgba(251,113,133,0.15);
+      border-radius: var(--radius-lg); padding: 22px;
+    }
+    .falsify-card .f-num {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--red); font-weight: 600;
+      margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .falsify-card h3 { font-size: 0.95rem; color: var(--red); margin-bottom: 8px; }
+    .falsify-card p  { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── Timeline ───────────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 2px; background: linear-gradient(to bottom, var(--cyan-dim), var(--border));
+    }
+    .tl-entry { position: relative; margin-bottom: 40px; }
+    .tl-entry::before {
+      content: ''; position: absolute; left: -34px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--cyan-dim);
+    }
+    .tl-entry.complete::before { background: var(--cyan); border-color: var(--cyan); }
+    .tl-date {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 6px; letter-spacing: 0.04em;
+    }
+    .tl-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+    .tl-body { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tl-tag {
+      font-size: 0.75rem; padding: 2px 10px; border-radius: 100px;
+      background: var(--surface2); border: 1px solid var(--border2); color: var(--muted);
+    }
+    .tl-tag.cyan  { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.2); color: var(--cyan); }
+    .tl-tag.amber { background: rgba(251,191,36,0.08); border-color: rgba(251,191,36,0.2); color: var(--amber); }
+    .tl-tag.green { background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.2); color: var(--green); }
+
+    /* ── Results table ──────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 28px 0; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.9rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    th {
+      background: var(--surface2); text-align: left; padding: 12px 16px;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--muted); font-weight: 600; white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.875rem; white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td.label { font-family: var(--font); font-weight: 500; color: var(--text); }
+    td.highlight { color: var(--cyan); font-weight: 600; }
+    td.peak     { color: var(--green); font-weight: 600; }
+    td.warning  { color: var(--amber); }
+    td.control  { color: var(--muted); }
+    tr.control-row td { opacity: 0.6; }
+
+    /* ── Key finding callout ────────────────────────────────────── */
+    .finding {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius-lg); padding: 22px 26px; margin: 20px 0;
+    }
+    .finding.amber { border-left-color: var(--amber); }
+    .finding .f-label {
+      font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 8px;
+    }
+    .finding.amber .f-label { color: var(--amber); }
+    .finding p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+    .finding p strong { color: var(--text); }
+
+    /* ── Metric definitions ─────────────────────────────────────── */
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 24px 0; }
+    .metric-def {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+    }
+    .metric-def .m-name { font-family: var(--mono); font-size: 0.85rem; color: var(--cyan); font-weight: 600; margin-bottom: 6px; }
+    .metric-def p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Next experiments ───────────────────────────────────────── */
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .exp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 14px;
+      transition: border-color 0.2s;
+    }
+    .exp-card:hover { border-color: var(--border2); }
+    .exp-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .exp-num { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+    .status-badge {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+    }
+    .status-pending   { background: rgba(251,191,36,0.1);  border: 1px solid rgba(251,191,36,0.25);  color: var(--amber); }
+    .status-active    { background: rgba(34,211,238,0.1);  border: 1px solid rgba(34,211,238,0.25);  color: var(--cyan); }
+    .status-complete  { background: rgba(74,222,128,0.1);  border: 1px solid rgba(74,222,128,0.25);  color: var(--green); }
+    .status-planned   { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.25); color: var(--purple); }
+    .exp-card h3 { font-size: 1rem; line-height: 1.3; }
+    .exp-card .exp-prop {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--cyan); padding: 2px 8px; background: rgba(34,211,238,0.07);
+      border-radius: 4px; display: inline-block; width: fit-content;
+    }
+    .exp-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .exp-card .exp-prediction {
+      font-size: 0.83rem; color: var(--text); background: var(--surface2);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 10px 14px; line-height: 1.5;
+    }
+    .exp-card .exp-prediction::before {
+      content: 'Predicted outcome — '; font-weight: 600; color: var(--muted);
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;
+      display: block; margin-bottom: 4px;
+    }
+
+    /* ── Agents ─────────────────────────────────────────────────── */
+    .agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+    .agent-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 22px; text-align: center;
+    }
+    .agent-letter {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.2rem; margin: 0 auto 12px;
+    }
+    .agent-a { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+    .agent-b { background: rgba(34,211,238,0.1); color: var(--cyan);  border: 1px solid rgba(34,211,238,0.25); }
+    .agent-c { background: rgba(167,139,250,0.1); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
+    .agent-card h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .agent-card .arch { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+    .agent-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Resources ──────────────────────────────────────────────── */
+    .resource-list { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+    .resource-item {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px;
+      transition: border-color 0.15s;
+    }
+    .resource-item:hover { border-color: var(--border2); }
+    .resource-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .resource-text .r-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+    .resource-text .r-url { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+    .resource-item a { color: inherit; }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0; background: var(--surface);
+    }
+    .footer-inner {
+      max-width: 1020px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 32px;
+    }
+    .footer-citation {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 22px;
+      font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+      line-height: 1.8; max-width: 600px;
+    }
+    .footer-meta { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+    .footer-meta a { color: var(--subtle); }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .question-grid, .falsify-grid, .agents-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+      .nav-links .hide-sm { display: none; }
+      .hero { padding: 64px 0 52px; }
+      h1 { font-size: 1.9rem; }
+    }
+    @media (max-width: 480px) {
+      .exp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      Quantum<span>Inquiry</span>
+    </div>
+    <div class="nav-links">
+      <a href="#theory">Theory</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#results">Results</a>
+      <a href="#next">Next</a>
+      <a href="#resources" class="hide-sm">Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Confirmatory Campaign Complete · 2026-02-26</div>
+    <h1>The <span class="delta">Δ</span>-Variable Theory<br>of Interrogative Emergence</h1>
+    <p class="hero-sub">
+      Does question-asking emerge as mathematical law? This project tests whether
+      interrogative structures arise as the necessary residue of unresolved constraint —
+      independent of the cognitive substrate that implements them.
+    </p>
+    <div class="hero-badges">
+      <span class="badge badge-confirmed">✓ P1 Confirmed — Interrogative emergence</span>
+      <span class="badge badge-confirmed">✓ P2 Confirmed — Cost-sensitivity gradient</span>
+      <span class="badge badge-pending">⏳ P3–P5 Pending — Next phase</span>
+      <span class="badge badge-neutral">75 runs · 5 conditions · 0 failures</span>
+    </div>
+    <div class="hero-links">
+      <a href="https://doi.org/10.17605/OSF.IO/F6GXC" class="btn btn-primary">OSF Project</a>
+      <a href="https://github.com/btisler-DS/dynamic-cross-origin-constraint" class="btn btn-outline">GitHub</a>
+      <a href="https://doi.org/10.5281/zenodo.18738379" class="btn btn-outline">Preregistration</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Core Question ─────────────────────────────────────────────── -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="section-header">
+      <h4>The Question</h4>
+      <h2>Why do systems ask questions?</h2>
+      <p>Current science treats interrogative behaviour as a linguistic phenomenon — something
+         that evolved in biological systems or was designed into artificial ones. This project
+         tests a harder claim.</p>
+    </div>
+    <div class="question-grid">
+      <div class="q-card">
+        <span class="q-card-icon">🔬</span>
+        <h3>The Conventional View</h3>
+        <p>Question-asking is a product of language and representation. Agents ask questions
+           because they have evolved the cognitive apparatus to do so, or because they were
+           trained on linguistic data. The behaviour is substrate-dependent.</p>
+      </div>
+      <div class="q-card">
+        <span class="q-card-icon">⚡</span>
+        <h3>The Structural Claim</h3>
+        <p>Interrogative states are <strong>Δ-variables</strong> — unresolved dependency
+           variables that emerge as the minimum residue of constraint under resource pressure.
+           Any system facing coordination problems under metabolic cost will develop them.
+           The behaviour is substrate-independent.</p>
+      </div>
+      <div class="q-card">
+        <span class="q-card-icon">🧪</span>
+        <h3>How We Test It</h3>
+        <p>Three agents with fundamentally different architectures (recurrent, convolutional,
+           relational) must coordinate under a Landauer-style energy tax. They are
+           <em>never told to ask questions</em>. The experiment tests whether
+           interrogative structure emerges anyway.</p>
+      </div>
+      <div class="q-card">
+        <span class="q-card-icon">📐</span>
+        <h3>What Makes It Falsifiable</h3>
+        <p>Smooth reward optimisation predicts monotonic performance curves. The structural
+           account predicts phase transitions, path dependence, and hysteresis. These are
+           qualitatively distinguishable outcomes. The theory names the conditions under
+           which it fails.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Theory ────────────────────────────────────────────────────── -->
+<section class="section" id="theory">
+  <div class="container">
+    <div class="section-header">
+      <h4>Theory</h4>
+      <h2>The Δ-Variable Framework</h2>
+      <p>A structural account of why interrogative states arise as necessary consequences
+         of coordinating under resource constraints — not as designed features.</p>
+    </div>
+
+    <div class="definition-box">
+      <div class="def-label">Core Definition</div>
+      <p>A <strong>Δ-variable</strong> is an explicitly represented, unresolved dependency
+         variable that requires external information for its resolution and creates a
+         mandatory coupling between the system holding it and the system capable of
+         resolving it.</p>
+    </div>
+
+    <p style="color:var(--muted); margin-bottom: 8px; font-size: 0.9rem;">
+      The invariant spanning implicit and explicit substrates:
+    </p>
+    <div class="definition-box" style="border-left-color: var(--purple); margin-top: 8px;">
+      <div class="def-label" style="color: var(--purple);">Structural Invariant</div>
+      <p><em>"Δ is structural dependency under constraint."</em></p>
+      <p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">
+        This holds whether the dependency is represented by a symbolic QUERY token (MARL agents),
+        a pheromone gradient below a decision threshold (army ants), or a gradient deficit
+        in a neural network. All are subclasses of the same structural phenomenon.
+      </p>
+    </div>
+
+    <h3 style="margin: 40px 0 16px;">Five Propositions</h3>
+    <div class="propositions">
+      <div class="prop">
+        <div class="prop-num">P1</div>
+        <div class="prop-body">
+          <h3>Structural Necessity</h3>
+          <p>In any system with internal uncertainty states, bounded resources, and coupling
+             opportunities, Δ-variables emerge necessarily — not as an optimised strategy
+             but as the minimum residue of unresolved constraint. Systems that lack explicit
+             representational capacity exhibit this as structural stagnation rather than
+             symbolic tokens.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="prop-num">P2</div>
+        <div class="prop-body">
+          <h3>Cost-Benefit Optimisation</h3>
+          <p>The rate of Δ-variable generation is a decreasing function of the marginal
+             cost-to-information-value ratio. Systems develop interrogative behaviour despite
+             higher energy costs when the coordination benefit exceeds expenditure — up to a
+             metabolic saturation boundary beyond which query suppression occurs.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="prop-num">P3</div>
+        <div class="prop-body">
+          <h3>Forced Coupling</h3>
+          <p>A Δ-variable held by one system creates a structural obligation in the
+             receiving system. Silence is not neutral: it propagates unresolved dependency.
+             Systems cannot act coherently on a Δ-variable without achieving closure —
+             the coupling is structurally mandatory, not behaviourally chosen.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="prop-num">P4</div>
+        <div class="prop-body">
+          <h3>Silent Collapse Prevention</h3>
+          <p>Systems without mechanisms for externalising Δ-variables undergo silent
+             collapse — internal uncertainty accumulates without generating a coordination
+             signal, producing correlated failures that are invisible until catastrophic.
+             Protocol 0 controls demonstrate this: zero crystallisation, persistent
+             coordination floor.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="prop-num">P5</div>
+        <div class="prop-body">
+          <h3>Substrate Independence</h3>
+          <p>Under identical resource constraints, systems with fundamentally different
+             cognitive architectures will converge on similar interrogative strategies.
+             The mathematical structure of the protocol is invariant across substrates;
+             only the implementation medium differs.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 48px 0 16px;">Falsifiability Conditions</h3>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px;">
+      The theory is falsified if any of the following three conditions hold:
+    </p>
+    <div class="falsify-grid">
+      <div class="falsify-card">
+        <div class="f-num">Condition 1</div>
+        <h3>No Hysteresis</h3>
+        <p>Crystallised protocols dissolve immediately when query cost is reduced
+           below the formation threshold — ruling out path dependence and structural
+           residue. Tests Experiment 2 (frozen-policy reversal).</p>
+      </div>
+      <div class="falsify-card">
+        <div class="f-num">Condition 2</div>
+        <h3>Full Agent C Recovery</h3>
+        <p>Systems with Agent C's type_head ablated reach equivalent coordination
+           within 50 epochs, showing no structural role for the relational broker.
+           Tests Experiment 6 (C ablation).</p>
+      </div>
+      <div class="falsify-card">
+        <div class="f-num">Condition 3</div>
+        <h3>Smooth Gradient</h3>
+        <p>Type entropy decreases as a smooth monotonic function of training time
+           with no discontinuous transitions — consistent with reward optimisation
+           and inconsistent with structural emergence. Already rejectable from
+           Run 11 pilot data.</p>
+      </div>
+    </div>
+
+    <!-- Agents -->
+    <h3 style="margin: 48px 0 16px;">Three Heterogeneous Agents</h3>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px;">
+      Substrate independence requires architectures that differ at the fundamental level of
+      how information is represented and processed — not just different hyperparameters.
+    </p>
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-letter agent-a">A</div>
+        <h3>Agent A</h3>
+        <div class="arch">GRU Recurrent Network</div>
+        <p>Sequential pattern encoding. Hidden state persists across timesteps.
+           Represents the temporal/recurrent mode of information integration.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-letter agent-b">B</div>
+        <h3>Agent B</h3>
+        <div class="arch">3D Convolutional Network</div>
+        <p>Volumetric spatial encoding. Integrates information across spatial
+           dimensions simultaneously. Represents the geometric mode.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-letter agent-c">C</div>
+        <h3>Agent C — The Weaver</h3>
+        <div class="arch">Graph Attention Network</div>
+        <p>Relational encoding over agent graph. Empirically identified as the
+           coordination broker: regulation without command. The RESPOND specialist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Timeline ──────────────────────────────────────────────────── -->
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="section-header">
+      <h4>Research Timeline</h4>
+      <h2>What has been done</h2>
+      <p>Chronological record from theoretical groundwork through confirmatory campaign completion.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-entry complete">
+        <div class="tl-date">Pre-2026-02-23</div>
+        <div class="tl-title">Theoretical Groundwork & Pilot Development</div>
+        <div class="tl-body">
+          Runs 1–10 established the baseline coordination cliff at Epoch 21, Zipf coefficient
+          ~1.72, and Agent C's emergent Weaver role. Theoretical grounding developed with
+          AnnA (intelligence as coherence under pressure) and Intelligence Beyond Neurons
+          (substrate-stripped account). Elicit systematic review screened 50 papers — none
+          make the ontological identity claim that language operations <em>are</em> mathematical;
+          the literature gap confirmed.
+          Run 11 (seed=42, Protocol 1, 500 epochs) produced the pilot phenomenology:
+          three crystallisation waves, counter-wave phenomenon, persistent QRC ≥ 0.95 from
+          epoch 280. Stored as exploratory data, excluded from confirmatory testing.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Runs 1–11</span>
+          <span class="tl-tag">Pilot data</span>
+          <span class="tl-tag amber">Exploratory</span>
+          <span class="tl-tag">Theory grounding</span>
+        </div>
+      </div>
+
+      <div class="tl-entry complete">
+        <div class="tl-date">2026-02-23</div>
+        <div class="tl-title">Harness Initialized — Protocol Registry, Notebook + Microscope UI</div>
+        <div class="tl-body">
+          New production harness (<code>dynamic-cross-origin-constraint</code>) committed.
+          Protocol registry centralising Protocol 0 (flat tax, frozen type_head) and
+          Protocol 1 (Gumbel-Softmax, differential cost multipliers). BaseAgent refactored
+          to unify output heads; subclasses implement only <code>encode()</code>.
+          Full React frontend with two modes: Lab Notebook (run history, comparison,
+          reports) and Neural Loom (epoch-by-epoch signal visualisation with D3 PCA scatter,
+          QRC gauge, entropy cooling bar, ROI ticker). FastAPI backend with SQLite persistence,
+          hash chain integrity, PDF/JSON reporting, and WebSocket metrics stream.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag cyan">Backend</span>
+          <span class="tl-tag cyan">Frontend</span>
+          <span class="tl-tag cyan">Protocol registry</span>
+          <span class="tl-tag">Commit d5e1571</span>
+        </div>
+      </div>
+
+      <div class="tl-entry complete">
+        <div class="tl-date">2026-02-24</div>
+        <div class="tl-title">Preregistration Locked · Campaign Runner Built · Theory Docs</div>
+        <div class="tl-body">
+          Preregistration uploaded to Zenodo
+          (DOI: <a href="https://doi.org/10.5281/zenodo.18738379">10.5281/zenodo.18738379</a>,
+          SHA-256: <code style="font-size:0.75rem;">7edc9113…a8d6a</code>) — five predictions
+          locked before data collection. Preregistered campaign runner written:
+          5 conditions × 15 seeds × 500 epochs, parallel subprocess orchestration.
+          Theory documentation committed: Δ-Variable propositions, counter-wave
+          discrimination hypotheses (H1/H2/H3), menu of 17 concrete post-confirmatory
+          experiments across 6 categories.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag green">Preregistered</span>
+          <span class="tl-tag">Zenodo locked</span>
+          <span class="tl-tag amber">Theory docs</span>
+          <span class="tl-tag">Commits 5882968, 271887b</span>
+        </div>
+      </div>
+
+      <div class="tl-entry complete">
+        <div class="tl-date">2026-02-25</div>
+        <div class="tl-title">Foundational Questions Answered · Ants & Implicit-Δ Analysis</div>
+        <div class="tl-body">
+          Paper-ready answers drafted for all 10 foundational question clusters: null model
+          definition, QRC theoretical privilege, crystallisation measurement, falsifiability
+          conditions, locality/capacity/representation/compositionality, coupling window
+          phenomenology, arms race dynamics, and generalisability. Implicit vs. explicit
+          Δ analysis: army ant stigmergy as a substrate-extreme instantiation of the same
+          structural phenomenon. Stigmergic Coupling Index (SCI) defined as the ant-system
+          analogue of QRC. Reid et al. (2015, PNAS) hysteresis evidence cited as direct
+          empirical support for structural residue in non-representational systems.
+          Proposition 1 minimally revised to include scope qualifier for non-representational
+          substrates. Draft Discussion Section 6.3 written.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag amber">Theory</span>
+          <span class="tl-tag">Implicit Δ</span>
+          <span class="tl-tag">Reid et al. 2015</span>
+          <span class="tl-tag">Commits 7d26aed, ec1d663</span>
+        </div>
+      </div>
+
+      <div class="tl-entry complete">
+        <div class="tl-date">2026-02-26</div>
+        <div class="tl-title">Confirmatory Campaign Complete — 75 Runs · P1 &amp; P2 Confirmed</div>
+        <div class="tl-body">
+          All 75 runs completed (5 conditions × 15 seeds × 500 epochs). Zero failures.
+          P1 confirmed: 54 of 60 Protocol 1 runs crystallise; 0 of 15 Protocol 0 controls
+          crystallise. P2 confirmed with non-monotonic coupling window: QRC peaks at
+          high pressure (q=3.0, QRC=0.969) then drops at extreme (q=5.0, QRC=0.937),
+          identifying the metabolic saturation boundary. Campaign data committed to GitHub.
+          OSF project wiki updated. Build report published.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag green">P1 confirmed</span>
+          <span class="tl-tag green">P2 confirmed</span>
+          <span class="tl-tag">75 runs</span>
+          <span class="tl-tag">Commit cc1dcce</span>
+          <span class="tl-tag">OSF updated</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- ── ADD NEW TIMELINE ENTRIES ABOVE THIS LINE ── -->
+    <!-- Template:
+    <div class="tl-entry complete">
+      <div class="tl-date">YYYY-MM-DD</div>
+      <div class="tl-title">Title</div>
+      <div class="tl-body">Description.</div>
+      <div class="tl-tags">
+        <span class="tl-tag cyan">Tag</span>
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<!-- ── Results ───────────────────────────────────────────────────── -->
+<section class="section" id="results">
+  <div class="container">
+    <div class="section-header">
+      <h4>Confirmatory Campaign · 2026-02-26</h4>
+      <h2>Campaign Results</h2>
+      <p>75 runs across 5 preregistered cost conditions. 15 independent seeds per condition.
+         500 epochs per run. Preregistration: <a href="https://doi.org/10.5281/zenodo.18738379">10.5281/zenodo.18738379</a>.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Condition</th>
+            <th>Query cost</th>
+            <th>QRC</th>
+            <th>Type Entropy H</th>
+            <th>Survival</th>
+            <th>Crystallised</th>
+            <th>Avg onset</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Low pressure</td>
+            <td>1.2×</td>
+            <td>0.810</td>
+            <td class="warning">0.944</td>
+            <td>0.167</td>
+            <td>11 / 15</td>
+            <td>epoch 130</td>
+          </tr>
+          <tr>
+            <td class="label">Baseline</td>
+            <td>1.5×</td>
+            <td>0.887</td>
+            <td class="warning">0.946</td>
+            <td>0.147</td>
+            <td>14 / 15</td>
+            <td>epoch 152</td>
+          </tr>
+          <tr>
+            <td class="label">High pressure</td>
+            <td>3.0×</td>
+            <td class="peak">0.969</td>
+            <td class="highlight">0.746</td>
+            <td class="peak">0.180</td>
+            <td>14 / 15</td>
+            <td>epoch 88</td>
+          </tr>
+          <tr>
+            <td class="label">Extreme</td>
+            <td>5.0×</td>
+            <td>0.937</td>
+            <td class="highlight">0.537</td>
+            <td class="warning">0.067</td>
+            <td class="peak">15 / 15</td>
+            <td class="peak">epoch 41</td>
+          </tr>
+          <tr class="control-row">
+            <td class="label">Control — Protocol 0</td>
+            <td>flat</td>
+            <td class="control">—</td>
+            <td class="control">—</td>
+            <td class="control">0.093</td>
+            <td class="control">0 / 15</td>
+            <td class="control">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="margin: 36px 0 16px;">Metric Definitions</h4>
+    <div class="metric-grid">
+      <div class="metric-def">
+        <div class="m-name">QRC</div>
+        <p>Query-Response Coupling: P(RESPOND within 3 timesteps | QUERY at t). Averaged
+           over final 50 crystallised epochs. Directly operationalises Δ-closure.</p>
+      </div>
+      <div class="metric-def">
+        <div class="m-name">H (Type Entropy)</div>
+        <p>Shannon entropy of per-epoch D/Q/R type distribution. Max = 1.585 bits (uniform).
+           Reduction indicates specialisation of communicative function.</p>
+      </div>
+      <div class="metric-def">
+        <div class="m-name">Survival</div>
+        <p>Fraction of episodes where at least one agent reaches a target. Final-epoch
+           average across seeds.</p>
+      </div>
+      <div class="metric-def">
+        <div class="m-name">Crystallised</div>
+        <p>Runs where H &lt; 0.95 for ≥ 5 consecutive epochs. Threshold operationalises
+           stable type-role differentiation.</p>
+      </div>
+      <div class="metric-def">
+        <div class="m-name">Avg onset</div>
+        <p>Mean epoch of first crystallisation event across crystallised runs.
+           Earlier onset = faster protocol formation under pressure.</p>
+      </div>
+    </div>
+
+    <h4 style="margin: 36px 0 16px;">Key Findings</h4>
+
+    <div class="finding">
+      <div class="f-label">P1 Confirmed — Interrogative Emergence</div>
+      <p>Protocol 1 crystallises in <strong>54 of 60 experimental runs (90%)</strong>.
+         Protocol 0 produces <strong>zero crystallisation across all 15 controls</strong>.
+         The 90% vs 0% gap confirms that type-differentiated interrogative signalling
+         requires a cost gradient incentive — it does not emerge by chance, and it
+         emerges reliably when that gradient is present.</p>
+    </div>
+
+    <div class="finding">
+      <div class="f-label">P2 Confirmed — Non-Monotonic Coupling Window</div>
+      <p>QRC and type specialisation increase monotonically with query cost up through
+         high pressure (q=3.0, QRC=<strong>0.969</strong>). At extreme pressure (q=5.0),
+         QRC drops to <strong>0.937</strong> and survival collapses to <strong>0.067</strong>
+         — below the Protocol 0 control (0.093). This identifies the <strong>metabolic
+         saturation boundary</strong>: the point at which query cost exceeds the
+         informational value of interrogative coupling. The non-monotonic QRC curve is
+         a structural prediction of the theory; smooth reward optimisation would
+         produce monotonic curves.</p>
+    </div>
+
+    <div class="finding amber">
+      <div class="f-label">Pilot Phenomenology (Run 11 — Exploratory)</div>
+      <p>Pre-preregistration pilot (seed=42, 500 epochs) established the full phenomenology:
+         <strong>three crystallisation waves</strong> (E21, E57, E128–E141), a
+         <strong>counter-wave phenomenon</strong> (full-survival events trigger transient
+         DECLARE spikes and entropy rebounds), and <strong>persistent QRC ≥ 0.95 from
+         epoch 280</strong>. Final equilibrium R≈0.64, D≈0.20, Q≈0.16 — a limit cycle,
+         not convergence to a fixed point. Reported as exploratory; not included in
+         confirmatory testing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Next Experiments ──────────────────────────────────────────── -->
+<section class="section" id="next">
+  <div class="container">
+    <div class="section-header">
+      <h4>Roadmap</h4>
+      <h2>Next experiments</h2>
+      <p>P3–P5 require a second experimental phase. Each card tests a specific structural
+         prediction. Status will be updated as experiments are completed.</p>
+    </div>
+
+    <div class="exp-grid">
+
+      <!-- Exp 2 — Hysteresis -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Experiment 2</span>
+          <span class="status-badge status-pending">Pending</span>
+        </div>
+        <div class="exp-prop">Tests P3</div>
+        <h3>Hysteresis Sweep — Path Dependence</h3>
+        <p>Freeze agent policies at crystallisation epoch, then reduce query cost to
+           q=1.2 (below formation threshold). Run 100 subsequent epochs. Measure whether
+           the crystallised protocol persists or dissolves.</p>
+        <div class="exp-prediction">
+          Protocol persists below formation threshold — structural residue that cannot be
+          removed by reversing the pressure that created it. If it dissolves, P3 fails.
+        </div>
+      </div>
+
+      <!-- Exp 6 — Agent C ablation -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Experiment 6</span>
+          <span class="status-badge status-pending">Pending</span>
+        </div>
+        <div class="exp-prop">Tests P4</div>
+        <h3>Agent C Ablation — Broker Role</h3>
+        <p>Freeze Agent C's type_head to DECLARE (ablating its RESPOND specialisation)
+           in 5 seeds of the baseline condition. Compare crystallisation rate, QRC, and
+           onset epoch vs unablated runs.</p>
+        <div class="exp-prediction">
+          Crystallisation rate drops and onset is delayed, confirming Agent C's
+          structural role as coordination broker. Full recovery within 50 epochs
+          would falsify P4.
+        </div>
+      </div>
+
+      <!-- Exp 3/4/5 — Counter-wave discrimination -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Experiments 3–5</span>
+          <span class="status-badge status-pending">Pending</span>
+        </div>
+        <div class="exp-prop">Theory development</div>
+        <h3>Counter-Wave Discrimination — H1 / H2 / H3</h3>
+        <p>Three competing hypotheses for the full-survival DECLARE spikes observed in Run 11.
+           H1: reward artifact. H2: phase reset on episode boundary. H3: pragmatic
+           speech act ("goal achieved, stop querying"). Decisive test: reward without
+           boundary — give success reward but continue episode.</p>
+        <div class="exp-prediction">
+          H3 predicts the spike follows the reward only if pressure relaxes. If spike
+          follows termination, H2. If boundary removal eliminates spike, H1.
+          Uses Run 11 extended data plus one new Protocol 1 run.
+        </div>
+      </div>
+
+      <!-- Protocol 2 -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Protocol 2</span>
+          <span class="status-badge status-planned">Planned</span>
+        </div>
+        <div class="exp-prop">Extension</div>
+        <h3>Query Type Specialisation — 8 Types, Variable Cost</h3>
+        <p>Expand the signal type vocabulary from 3 (D/Q/R) to 8 query subtypes with
+           variable costs. Test whether the type distribution follows a Zipf law —
+           the frequency distribution predicted by optimal communication under constraint.</p>
+        <div class="exp-prediction">
+          Zipf coefficient α ≈ 1.0–1.8 for query frequency distribution.
+          Agent C's QUERY role expected to specialise further into high-value
+          query subtypes. Type entropy will fragment across new subtypes before
+          re-crystallising.
+        </div>
+      </div>
+
+      <!-- Substrate Independence direct test -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Experiment 11</span>
+          <span class="status-badge status-planned">Planned</span>
+        </div>
+        <div class="exp-prop">Tests P5</div>
+        <h3>Cross-Architecture QRC Comparison</h3>
+        <p>Decompose per-agent QRC and type distributions across seeds at the
+           individual agent level. Compare final interrogative strategies between
+           Agent A (RNN), Agent B (CNN), and Agent C (GNN) within each crystallised run.</p>
+        <div class="exp-prediction">
+          No significant difference in per-agent QRC or final type ratios across
+          architectures (p&gt;0.05), confirming substrate independence. Significant
+          differences would indicate that the relational architecture of Agent C
+          is load-bearing and violate P5.
+        </div>
+      </div>
+
+      <!-- Ants / SCI -->
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <span class="exp-num">Cross-System</span>
+          <span class="status-badge status-planned">Planned</span>
+        </div>
+        <div class="exp-prop">Implicit Δ</div>
+        <h3>Stigmergic Coupling Index in Army Ant Bridges</h3>
+        <p>Compute the Stigmergic Coupling Index (SCI) from Reid et al. (2015, PNAS)
+           army ant bridge formation data. SCI = fraction of local stalls resolved via
+           neighbour-mediated pheromone reinforcement within τ steps. Compare to
+           MARL QRC as same-phenomenon cross-substrate measurement.</p>
+        <div class="exp-prediction">
+          SCI correlates with QRC across conditions — same structural measure,
+          different substrate. Hysteresis already confirmed in ants (Reid et al.):
+          bridges persist below formation threshold. This provides cross-kingdom
+          empirical grounding for Proposition 1's scope extension.
+        </div>
+      </div>
+
+    </div>
+    <!-- ── ADD NEW EXPERIMENT CARDS ABOVE THIS LINE ──
+    Template:
+    <div class="exp-card">
+      <div class="exp-card-header">
+        <span class="exp-num">Experiment N</span>
+        <span class="status-badge status-pending">Pending</span>
+      </div>
+      <div class="exp-prop">Tests P?</div>
+      <h3>Title</h3>
+      <p>Description of experiment design.</p>
+      <div class="exp-prediction">Predicted outcome.</div>
+    </div>
+
+    Status options: status-pending | status-active | status-complete | status-planned
+    -->
+
+  </div>
+</section>
+
+<!-- ── Resources ─────────────────────────────────────────────────── -->
+<section class="section" id="resources">
+  <div class="container">
+    <div class="section-header">
+      <h4>Open Science</h4>
+      <h2>All materials are public</h2>
+      <p>Full code, data, preregistration, and theory documents are freely available
+         to ensure reproducibility.</p>
+    </div>
+
+    <div class="resource-list">
+      <div class="resource-item">
+        <div class="resource-icon">📋</div>
+        <div class="resource-text">
+          <div class="r-title">OSF Project — Data, wiki, and project record</div>
+          <div class="r-url"><a href="https://osf.io/f6gxc">osf.io/f6gxc</a> · DOI: 10.17605/OSF.IO/F6GXC</div>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">🔒</div>
+        <div class="resource-text">
+          <div class="r-title">Preregistration — Locked before data collection</div>
+          <div class="r-url"><a href="https://doi.org/10.5281/zenodo.18738379">doi.org/10.5281/zenodo.18738379</a> · SHA-256: 7edc9113…a8d6a</div>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">💻</div>
+        <div class="resource-text">
+          <div class="r-title">Code — Full simulation engine, backend API, and React UI</div>
+          <div class="r-url"><a href="https://github.com/btisler-DS/dynamic-cross-origin-constraint">github.com/btisler-DS/dynamic-cross-origin-constraint</a></div>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">📊</div>
+        <div class="resource-text">
+          <div class="r-title">Campaign data — 75 manifest files (5 conditions × 15 seeds)</div>
+          <div class="r-url"><a href="https://github.com/btisler-DS/dynamic-cross-origin-constraint/tree/main/data/campaign">github.com/…/data/campaign</a></div>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">📄</div>
+        <div class="resource-text">
+          <div class="r-title">Theory documents — Propositions, experiments, foundational Q&amp;A</div>
+          <div class="r-url"><a href="https://github.com/btisler-DS/dynamic-cross-origin-constraint/tree/main/docs/theory">github.com/…/docs/theory</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-citation">
+        Tisler, B. (2026). The Δ-Variable Theory of Interrogative Emergence. OSF.<br>
+        https://doi.org/10.17605/OSF.IO/F6GXC<br>
+        <br>
+        Tisler, B. (2026). Interrogative Structure Emergence Under Energy Constraints.<br>
+        Zenodo. https://doi.org/10.5281/zenodo.18738379
+      </div>
+    </div>
+    <div class="footer-meta">
+      <div style="font-weight:600; color: var(--text); margin-bottom:8px;">quantuminquiry.org</div>
+      All materials CC BY-NC 4.0<br>
+      <a href="https://github.com/btisler-DS/dynamic-cross-origin-constraint">GitHub</a> ·
+      <a href="https://osf.io/f6gxc">OSF</a> ·
+      <a href="https://doi.org/10.5281/zenodo.18738379">Zenodo</a><br>
+      <br>
+      Last updated: 2026-02-26
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
