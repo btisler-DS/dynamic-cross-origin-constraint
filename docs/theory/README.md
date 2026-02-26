@@ -12,6 +12,7 @@ Working documents supporting the Δ-Variable Theory of Interrogative Emergence.
 | [`menu of concrete experiments.docx`](menu%20of%20concrete%20experiments.docx) | Post-confirmatory experimental roadmap — 17 experiments across 6 categories |
 | [`menu of concrete experiments extended.docx`](menu%20of%20concrete%20experiments%20extended.docx) | Extended menu with foundational framing questions — null model, measurement definitions, falsifiability conditions |
 | [`foundational-questions-answered.md`](foundational-questions-answered.md) | Paper-ready answers to all 10 question clusters in the extended menu (null model, QRC rationale, crystallization definition, falsifiability, generalizability) |
+| [`ants-implicit-delta.md`](ants-implicit-delta.md) | Implicit vs. explicit Δ — ant case analysis, SCI definition, Reid et al. hysteresis evidence, minimal Proposition 1 revision, draft Discussion Section 6.3 |
 | [`response-to-anna-assessment.md`](response-to-anna-assessment.md) | Formal response to AnnA agent's structural assessment — scope boundary between approximation and instantiation |
 
 These documents are **post-pilot-data** working notes. They are not part of the
