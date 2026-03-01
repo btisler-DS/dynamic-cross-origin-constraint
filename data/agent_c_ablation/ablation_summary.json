@@ -1,0 +1,57 @@
+{
+  "experiment": "agent_c_ablation",
+  "preregistered_prediction": "P4",
+  "campaign_date": "2026-02-27T16:16:26.301913",
+  "total_seeds": 5,
+  "ablation": "agent_c_type_head_frozen_to_DECLARE",
+  "condition": "baseline_q1.5",
+  "epochs": 500,
+  "crystallized_ablated": 2,
+  "crystallized_baseline": 5,
+  "crystallization_rate_ablated": 0.4,
+  "crystallization_rate_baseline": 1.0,
+  "mean_crystallization_delay_epochs": 82.5,
+  "mean_qrc_delta": 0.0211,
+  "seed_results": [
+    {
+      "seed": 0,
+      "crystallization_epoch": 209,
+      "crystallized": true,
+      "final_entropy": 0.9057524517679156,
+      "final_qrc": 0.6363636363636364,
+      "final_survival": 0.8
+    },
+    {
+      "seed": 1,
+      "crystallization_epoch": 26,
+      "crystallized": true,
+      "final_entropy": 0.9798888292508476,
+      "final_qrc": 0.9668874172185431,
+      "final_survival": 0.0
+    },
+    {
+      "seed": 2,
+      "crystallization_epoch": null,
+      "crystallized": false,
+      "final_entropy": 1.094338471962546,
+      "final_qrc": 0.7384370015948963,
+      "final_survival": 0.1
+    },
+    {
+      "seed": 3,
+      "crystallization_epoch": null,
+      "crystallized": false,
+      "final_entropy": 1.0950929981186142,
+      "final_qrc": 0.7652916073968705,
+      "final_survival": 0.0
+    },
+    {
+      "seed": 4,
+      "crystallization_epoch": null,
+      "crystallized": false,
+      "final_entropy": 1.0264150310571258,
+      "final_qrc": 0.9660766961651918,
+      "final_survival": 0.0
+    }
+  ]
+}

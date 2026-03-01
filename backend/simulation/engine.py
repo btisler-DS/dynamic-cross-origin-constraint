@@ -57,6 +57,13 @@ class SimulationConfig:
     query_cost: float = 1.5     # QUERY signal cost multiplier (Protocol 1)
     respond_cost: float = 0.8   # RESPOND signal cost multiplier (Protocol 1)
     output_dir: str = "."       # Directory for manifest and report output
+    training_frozen: bool = False          # If True, skip optimizer step (phase 2 of hysteresis)
+    ablate_agent_c_type_head: bool = False # Experiment 6: freeze Agent C type_head only
+    # Counter-wave discrimination (Experiments 3–5)
+    counter_wave_mode: int = 0             # 0=normal, 3=no-boundary, 4=no-bonus, 5=pressure-hold
+    post_success_steps: int = 20           # Exp 3: steps to continue after success event
+    post_success_pressure_episodes: int = 3  # Exp 5: episodes at elevated tax after success
+    post_success_tax_multiplier: float = 3.0 # Exp 5: tax rate multiplier during pressure hold
 
 
 class SimulationEngine:
@@ -129,6 +136,10 @@ class SimulationEngine:
             for agent in self.agents:
                 agent.freeze_type_head()
 
+        # Experiment 6: ablate Agent C's type_head only (A and B remain trainable)
+        if self.config.ablate_agent_c_type_head and self.protocol.should_train_type_head():
+            self.agent_c.freeze_type_head()
+
         # Optimizers
         self.optimizers = [
             optim.Adam(agent.parameters(), lr=self.config.learning_rate)
@@ -185,9 +196,49 @@ class SimulationEngine:
             agent.clear_episode()
 
         last_trajectory = None
+        episode_summaries: list[dict] = []   # per-episode type breakdown for counter-wave
+        pressure_hold_remaining = 0          # Exp 5: episodes remaining under elevated tax
         for episode in range(self.config.episodes_per_epoch):
+            # Exp 5: elevated tax after a full-survival episode
+            if self.config.counter_wave_mode == 5 and pressure_hold_remaining > 0:
+                effective_tax = self.config.communication_tax_rate * self.config.post_success_tax_multiplier
+            else:
+                effective_tax = self.config.communication_tax_rate
+
+            type_history_start = len(self.comm_buffer.type_history)
             record_trajectory = (episode == self.config.episodes_per_epoch - 1)
-            result = self._run_episode(epoch, tau=tau, record_trajectory=record_trajectory)
+            result = self._run_episode(
+                epoch,
+                tau=tau,
+                record_trajectory=record_trajectory,
+                effective_tax_rate=effective_tax,
+                no_boundary=(self.config.counter_wave_mode == 3),
+            )
+
+            # Per-episode type distribution for counter-wave analysis
+            ep_types = self.comm_buffer.type_history[type_history_start:]
+            counts = {0: 0, 1: 0, 2: 0}
+            for step in ep_types:
+                for t in step.values():
+                    counts[t] = counts.get(t, 0) + 1
+            ep_total = max(sum(counts.values()), 1)
+            episode_summaries.append({
+                "survived": result["survived"],
+                "target_reached": result["target_reached"],
+                "n_steps": result["steps"],
+                "declare_rate": round(counts[0] / ep_total, 4),
+                "query_rate":   round(counts[1] / ep_total, 4),
+                "respond_rate": round(counts[2] / ep_total, 4),
+                "success_step": result.get("success_step"),
+                "pressure_held": (self.config.counter_wave_mode == 5 and pressure_hold_remaining > 0),
+            })
+
+            # Exp 5: trigger pressure hold after full-survival episode
+            if self.config.counter_wave_mode == 5 and result.get("full_survival", False):
+                pressure_hold_remaining = self.config.post_success_pressure_episodes
+            elif pressure_hold_remaining > 0:
+                pressure_hold_remaining -= 1
+
             for name in ["A", "B", "C"]:
                 epoch_rewards[name] += result["total_rewards"][name]
             epoch_survivals += 1 if result["survived"] else 0
@@ -197,8 +248,13 @@ class SimulationEngine:
             if record_trajectory:
                 last_trajectory = result.get("trajectory")
 
-        # Training update
-        losses = update_agents(self.agents, self.optimizers, self.config.gamma)
+        # Training update — skipped in phase 2 of hysteresis (all params frozen)
+        if not self.config.training_frozen:
+            losses = update_agents(self.agents, self.optimizers, self.config.gamma)
+        else:
+            losses = {a.name: 0.0 for a in self.agents}
+            for agent in self.agents:
+                agent.clear_episode()
 
         # Compute signal metrics from comm buffer history (BEFORE reset)
         history = self.comm_buffer.history
@@ -245,6 +301,7 @@ class SimulationEngine:
             "timestamp": time.time(),
             "trajectory": last_trajectory,
             "tau": tau,
+            "episode_summaries": episode_summaries,  # per-episode type breakdown
         }
         metrics.update(extras)  # merges 'inquiry' dict for P1, nothing for P0
 
@@ -255,6 +312,8 @@ class SimulationEngine:
         epoch_seed_offset: int,
         tau: float = 1.0,
         record_trajectory: bool = False,
+        effective_tax_rate: float | None = None,  # Exp 5: elevated pressure override
+        no_boundary: bool = False,                # Exp 3: continue for N steps after success
     ) -> dict:
         """Run a single episode and return summary."""
         episode_seed = self.config.seed + epoch_seed_offset
@@ -262,8 +321,14 @@ class SimulationEngine:
 
         self.agent_a.reset_hidden()
 
+        # Counter-wave experiment overrides
+        tax_rate = effective_tax_rate if effective_tax_rate is not None else self.config.communication_tax_rate
+        survival_bonus = 0.0 if self.config.counter_wave_mode == 4 else self.config.survival_bonus
+
         total_rewards = {"A": 0.0, "B": 0.0, "C": 0.0}
         done = False
+        success_step: int | None = None    # Exp 3: step at which target was reached
+        post_success_remaining: int = 0    # Exp 3: steps left after success
 
         trajectory = None
         if record_trajectory:
@@ -311,9 +376,13 @@ class SimulationEngine:
                 action = dist.sample()
                 action_log_prob = dist.log_prob(action)
 
-                # Protocol 1: include type_head gradient via joint log P(action, type | s)
-                # Protocol 0: type_head is frozen — only action log_prob contributes
-                if self.protocol.should_train_type_head():
+                # Include type_head gradient only if protocol trains it AND this
+                # agent's type_head is not frozen (supports per-agent ablation).
+                type_head_active = (
+                    self.protocol.should_train_type_head()
+                    and any(p.requires_grad for p in agent.type_head.parameters())
+                )
+                if type_head_active:
                     type_dist = Categorical(logits=all_type_logits[agent.name])
                     type_log_prob = type_dist.log_prob(
                         torch.tensor(signal_types[agent.name])
@@ -328,6 +397,18 @@ class SimulationEngine:
             # Environment step
             obs, env_rewards, done, info = self.env.step(actions)
 
+            # Exp 3 (no_boundary): on first target_reached, record success_step and
+            # continue for post_success_steps more steps instead of terminating.
+            if no_boundary and done and info.get("done_reason") == "target_reached" and success_step is None:
+                success_step = info["step"]
+                done = False
+                post_success_remaining = self.config.post_success_steps
+            elif no_boundary and success_step is not None and not done:
+                if post_success_remaining > 0:
+                    post_success_remaining -= 1
+                    if post_success_remaining == 0:
+                        done = True  # terminate after the extension window
+
             if trajectory is not None:
                 trajectory["steps"].append({
                     "A": self.env.agents_pos["A"].tolist(),
@@ -336,7 +417,7 @@ class SimulationEngine:
                     "energy": {k: round(v, 1) for k, v in info["energy"].items()},
                 })
 
-            # Compute rewards via protocol
+            # Compute rewards via protocol (uses overridden tax_rate and survival_bonus)
             for agent in self.agents:
                 reward = self.protocol.compute_reward(
                     agent_name=agent.name,
@@ -344,20 +425,23 @@ class SimulationEngine:
                     signal_sent=signals[agent.name],
                     energy_remaining=info["energy"][agent.name],
                     energy_budget=self.config.energy_budget,
-                    communication_tax_rate=self.config.communication_tax_rate,
+                    communication_tax_rate=tax_rate,
                     reached_target=info["reached_target"][agent.name],
-                    survival_bonus=self.config.survival_bonus,
+                    survival_bonus=survival_bonus,
                     signal_type=signal_types[agent.name],
                 )
                 agent.rewards[-1] = reward
                 total_rewards[agent.name] += reward
 
+        target_reached = (info["done_reason"] == "target_reached") or (success_step is not None)
         result = {
             "total_rewards": total_rewards,
             "survived": info["done_reason"] != "energy_depleted",
-            "target_reached": info["done_reason"] == "target_reached",
+            "target_reached": target_reached,
+            "full_survival": target_reached,  # alias used by Exp 5 pressure-hold trigger
             "steps": info["step"],
             "energy_spent": self.env.total_energy_spent,
+            "success_step": success_step,     # Exp 3: step at which success was detected (or None)
         }
         if trajectory is not None:
             result["trajectory"] = trajectory
@@ -381,8 +465,10 @@ class SimulationEngine:
             "epochs_total": len(self.epoch_metrics),
             "final_metrics": self._extract_final_metrics(self.epoch_metrics[-1]),
             "crystallization_epoch": self._find_crystallization_epoch(self.epoch_metrics),
+            "per_agent_crystallization": self._find_per_agent_crystallization(self.epoch_metrics),
             "phase_transitions": self._detect_phase_transitions(self.epoch_metrics),
             "performance_stats": self._compute_performance_stats(self.epoch_metrics),
+            "counter_wave_data": self._extract_counter_wave_data(self.epoch_metrics),
         }
         with open(full_path, "w") as f:
             json.dump(manifest, f, indent=2)
@@ -397,6 +483,7 @@ class SimulationEngine:
             'energy_roi': last_epoch.get('energy_roi', 0),
             'type_entropy': inq.get('type_entropy', None),
             'qrc': inq.get('query_response_coupling', None),
+            'per_agent_types': inq.get('per_agent_types', None),  # P4: per-arch participation
         }
 
     def _find_crystallization_epoch(self, epochs: list[dict]) -> int | None:
@@ -422,6 +509,52 @@ class SimulationEngine:
                 streak_count = 0
                 streak_start = None
         return None
+
+    def _find_per_agent_crystallization(self, epochs: list[dict]) -> dict[str, int | None]:
+        """Per-agent crystallisation epoch: first epoch in a 5-streak where that
+        agent's individual type entropy drops below 1.2 bits.
+
+        H_max (uniform, 3 types) = log2(3) ≈ 1.585 bits.
+        Threshold 1.2 bits requires one signal type to exceed ~60% share —
+        meaningfully non-uniform and well above random initialisation.
+
+        Used for preregistration P4 (substrate independence) ANOVA.
+        """
+        import math
+
+        if self.config.protocol != 1:
+            return {"A": None, "B": None, "C": None}
+
+        THRESHOLD = 1.2  # bits
+
+        results: dict[str, int | None] = {"A": None, "B": None, "C": None}
+        streaks: dict[str, int] = {"A": 0, "B": 0, "C": 0}
+        starts:  dict[str, int | None] = {"A": None, "B": None, "C": None}
+
+        for m in epochs:
+            inq = m.get("inquiry", {})
+            if not isinstance(inq, dict):
+                continue
+            pat = inq.get("per_agent_types", {})
+            for agent in ("A", "B", "C"):
+                if results[agent] is not None:
+                    continue
+                ad = pat.get(agent) or {}
+                d = ad.get("DECLARE", 0.0)
+                q = ad.get("QUERY",   0.0)
+                r = ad.get("RESPOND", 0.0)
+                h = sum(-p * math.log2(p) for p in (d, q, r) if p > 1e-9)
+                if h < THRESHOLD:
+                    if streaks[agent] == 0:
+                        starts[agent] = m["epoch"]
+                    streaks[agent] += 1
+                    if streaks[agent] >= 5:
+                        results[agent] = starts[agent]
+                else:
+                    streaks[agent] = 0
+                    starts[agent]  = None
+
+        return results
 
     def _detect_phase_transitions(self, epochs: list[dict]) -> list[dict]:
         """Epochs where type_entropy drops by more than 0.05 in a single step."""
@@ -453,6 +586,70 @@ class SimulationEngine:
             'avg_target_rate': round(sum(target_rates) / n, 4),
             'max_survival_rate': round(max(survival_rates) if survival_rates else 0, 4),
             'max_target_rate': round(max(target_rates) if target_rates else 0, 4),
+        }
+
+    def _extract_counter_wave_data(self, epochs: list[dict]) -> dict:
+        """Extract counter-wave events and per-episode type breakdowns.
+
+        A counter-wave event is defined as: an epoch with survival_rate=1.0 followed
+        by an epoch where type_entropy (H) increases by >= 0.03 bits.
+
+        Returns a dict with:
+          - counter_wave_mode: experiment variant
+          - events: list of detected counter-wave events with context window
+          - full_survival_epochs: all epochs with survival_rate==1.0
+          - declare_rate_at_success: mean DECLARE rate in full-survival episodes
+          - declare_rate_baseline: mean DECLARE rate in non-success episodes
+        """
+        if self.config.protocol != 1:
+            return {}
+
+        full_survival_epochs = []
+        declare_at_success: list[float] = []
+        declare_baseline: list[float] = []
+
+        for m in epochs:
+            ep_sums = m.get('episode_summaries', [])
+            for ep in ep_sums:
+                if ep.get('target_reached'):
+                    declare_at_success.append(ep.get('declare_rate', 0.0))
+                else:
+                    declare_baseline.append(ep.get('declare_rate', 0.0))
+            if m.get('survival_rate', 0) >= 1.0:
+                full_survival_epochs.append(m['epoch'])
+
+        # Counter-wave events: full-survival epoch followed by H increase
+        events = []
+        for i, m in enumerate(epochs[:-1]):
+            if m.get('survival_rate', 0) < 1.0:
+                continue
+            h_now  = (m.get('inquiry') or {}).get('type_entropy')
+            h_next = (epochs[i + 1].get('inquiry') or {}).get('type_entropy')
+            if h_now is None or h_next is None:
+                continue
+            delta_h = h_next - h_now
+            if delta_h >= 0.03:
+                # Build K=2 episode context window
+                ep_before = m.get('episode_summaries', [])
+                ep_after  = epochs[i + 1].get('episode_summaries', [])
+                events.append({
+                    'epoch':       m['epoch'],
+                    'h_before':    round(h_now, 4),
+                    'h_after':     round(h_next, 4),
+                    'delta_h':     round(delta_h, 4),
+                    'success_episodes': [e for e in ep_before if e.get('target_reached')],
+                    'post_success_episodes': ep_after[:3],  # first 3 episodes of next epoch
+                })
+
+        import statistics as st
+        return {
+            'counter_wave_mode': self.config.counter_wave_mode,
+            'n_full_survival_epochs': len(full_survival_epochs),
+            'n_counter_wave_events': len(events),
+            'declare_rate_at_success': round(st.mean(declare_at_success), 4) if declare_at_success else None,
+            'declare_rate_baseline':  round(st.mean(declare_baseline), 4)  if declare_baseline  else None,
+            'full_survival_epochs': full_survival_epochs[:50],  # cap at 50 for JSON size
+            'events': events[:20],                              # cap at 20 events
         }
 
     # --- Control methods ---
@@ -518,6 +715,10 @@ if __name__ == "__main__":
                         help="RESPOND signal cost multiplier (Protocol 1)")
     parser.add_argument("--output-dir", type=str, default=".",
                         help="Directory for manifest and report output")
+    parser.add_argument("--ablate-agent-c", action="store_true",
+                        help="Experiment 6: freeze Agent C type_head only")
+    parser.add_argument("--counter-wave-mode", type=int, default=0, choices=[0, 3, 4, 5],
+                        help="Counter-wave experiment: 0=normal, 3=no-boundary, 4=no-bonus, 5=pressure-hold")
     args = parser.parse_args()
 
     def print_metrics(m: dict) -> None:
@@ -544,6 +745,8 @@ if __name__ == "__main__":
         query_cost=args.query_cost,
         respond_cost=args.respond_cost,
         output_dir=args.output_dir,
+        ablate_agent_c_type_head=args.ablate_agent_c,
+        counter_wave_mode=args.counter_wave_mode,
     )
     engine = SimulationEngine(config=config, epoch_callback=print_metrics)
     engine.run()

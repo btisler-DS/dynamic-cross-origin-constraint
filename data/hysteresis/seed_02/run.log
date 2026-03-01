@@ -1,0 +1,4 @@
+# Experiment 2: Hysteresis — seed=2  started 2026-02-27T09:31:45.158376
+# phase1_q=1.5 -> phase2_q=1.2
+
+{"crystallized": true, "crystallization_epoch": 56, "hysteresis_detected": false, "persistence_rate": 0.57, "final_phase2_entropy": 0.945, "final_phase2_qrc": 0.9974, "phase2_epochs_run": 100}

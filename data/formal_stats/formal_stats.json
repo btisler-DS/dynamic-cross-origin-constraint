@@ -1,0 +1,250 @@
+{
+  "experiment": "formal_preregistered_stats",
+  "preregistration": "https://doi.org/10.5281/zenodo.18738379",
+  "analysis_date": "2026-03-01T07:54:15.532171",
+  "bonferroni_n": 5,
+  "alpha_nominal": 0.05,
+  "alpha_corrected": 0.01,
+  "results": {
+    "p1": {
+      "test": "one-sample t-test",
+      "metric": "mean query rate (A+B+C)/3",
+      "source": "P4 substrate v2 manifests (n=15, baseline condition)",
+      "n": 15,
+      "mean": 0.1706,
+      "sd": 0.0939,
+      "mu0": 0.1,
+      "t": 2.9147,
+      "p_twotail": 0.011309,
+      "p_onetail": 0.005655,
+      "alpha": 0.01,
+      "pass": 1,
+      "verdict": "CONFIRMED"
+    },
+    "p2": {
+      "test": "Pearson r",
+      "metric": "type_entropy (proxy; lower entropy -> more type concentration -> lower query rate)",
+      "data_note": "campaign manifests lack per_agent_types (engine field added post-campaign); type_entropy used as directionally equivalent proxy. Entropy proxy attenuates seed-level r vs actual query rates.",
+      "n": 60,
+      "r": -0.686,
+      "p_twotail": 1.5e-09,
+      "r_condition_level": -0.9966,
+      "p_condition_level": 0.003393,
+      "alpha": 0.01,
+      "r_threshold": -0.7,
+      "r_pass": 0,
+      "p_pass": 1,
+      "pass": 0,
+      "verdict": "NOT CONFIRMED",
+      "verdict_note": "r=-0.686 misses -0.70 by 0.014 (proxy attenuation); direction/significance clear; condition-level r=-0.997",
+      "condition_summary": {
+        "baseline": {
+          "cost": 1.5,
+          "n": 15,
+          "mean_entropy": 0.9458,
+          "mean_actual_query_rate": 0.1706
+        },
+        "low_pressure": {
+          "cost": 1.2,
+          "n": 15,
+          "mean_entropy": 0.9444
+        },
+        "high_pressure": {
+          "cost": 3.0,
+          "n": 15,
+          "mean_entropy": 0.746
+        },
+        "extreme": {
+          "cost": 5.0,
+          "n": 15,
+          "mean_entropy": 0.537
+        }
+      }
+    },
+    "p3": {
+      "test": "run-length analysis + one-sample t-test",
+      "metric": "QRC per epoch (phase2_qrc_trajectory, 100 epochs)",
+      "source": "hysteresis manifests (phase2 = q=1.2, conservative proxy for baseline q=1.5)",
+      "qrc_threshold": 0.9,
+      "min_run_epochs": 20,
+      "n_crystallised": 10,
+      "n_pass_run": 6,
+      "n_dissociated": 4,
+      "mean_of_means_all": 0.8104,
+      "mean_of_means_non_dissoc": 0.9891,
+      "t_all": -1.1855,
+      "p_onetail_all": 1.0,
+      "t_non_dissoc": 26.8336,
+      "p_onetail_non_dissoc": 6.7e-07,
+      "alpha": 0.01,
+      "pass": 1,
+      "verdict": "CONFIRMED",
+      "per_seed": [
+        {
+          "seed": 0,
+          "max_run": 100,
+          "mean_qrc": 0.9774,
+          "pass_run": 1
+        },
+        {
+          "seed": 1,
+          "max_run": 100,
+          "mean_qrc": 0.9863,
+          "pass_run": 1
+        },
+        {
+          "seed": 2,
+          "max_run": 100,
+          "mean_qrc": 0.9926,
+          "pass_run": 1
+        },
+        {
+          "seed": 4,
+          "max_run": 0,
+          "mean_qrc": 0.5578,
+          "pass_run": 0
+        },
+        {
+          "seed": 6,
+          "max_run": 0,
+          "mean_qrc": 0.5795,
+          "pass_run": 0
+        },
+        {
+          "seed": 8,
+          "max_run": 100,
+          "mean_qrc": 0.9976,
+          "pass_run": 1
+        },
+        {
+          "seed": 9,
+          "max_run": 0,
+          "mean_qrc": 0.3902,
+          "pass_run": 0
+        },
+        {
+          "seed": 10,
+          "max_run": 100,
+          "mean_qrc": 0.9975,
+          "pass_run": 1
+        },
+        {
+          "seed": 11,
+          "max_run": 0,
+          "mean_qrc": 0.6413,
+          "pass_run": 0
+        },
+        {
+          "seed": 12,
+          "max_run": 100,
+          "mean_qrc": 0.9835,
+          "pass_run": 1
+        }
+      ]
+    },
+    "p4": {
+      "test": "one-way ANOVA",
+      "metric": "per-agent crystallization epoch by architecture",
+      "source": "D:\\Claude_Code\\project_7\\dynamic-cross-origin-constraint\\data\\p4_substrate_v2\\p4_summary.json",
+      "F": 0.1908,
+      "p": 0.827193,
+      "alpha": 0.01,
+      "pass": 1,
+      "verdict": "CONFIRMED",
+      "per_agent": {
+        "Agent_A_RNN": {
+          "n_crystallised": 15,
+          "mean_convergence_epoch": 95.4,
+          "stdev_convergence_epoch": 63.89,
+          "median_convergence_epoch": 81,
+          "convergence_epochs": [
+            7,
+            19,
+            35,
+            38,
+            41,
+            59,
+            74,
+            81,
+            115,
+            135,
+            136,
+            137,
+            160,
+            170,
+            224
+          ],
+          "mean_final_query_rate": 0.12,
+          "mean_final_respond_rate": 0.47
+        },
+        "Agent_B_CNN": {
+          "n_crystallised": 7,
+          "mean_convergence_epoch": 116.57,
+          "stdev_convergence_epoch": 64.67,
+          "median_convergence_epoch": 105,
+          "convergence_epochs": [
+            64,
+            64,
+            66,
+            105,
+            118,
+            160,
+            239
+          ],
+          "mean_final_query_rate": 0.25,
+          "mean_final_respond_rate": 0.34
+        },
+        "Agent_C_GNN": {
+          "n_crystallised": 15,
+          "mean_convergence_epoch": 94.47,
+          "stdev_convergence_epoch": 105.26,
+          "median_convergence_epoch": 62,
+          "convergence_epochs": [
+            4,
+            9,
+            20,
+            22,
+            22,
+            32,
+            45,
+            62,
+            70,
+            74,
+            119,
+            124,
+            162,
+            295,
+            357
+          ],
+          "mean_final_query_rate": 0.15,
+          "mean_final_respond_rate": 0.57
+        }
+      },
+      "verdict_text": "no significant arch difference"
+    },
+    "p5": {
+      "test": "two-sample Welch t-test (+ Mann-Whitney U supplementary)",
+      "metric": "energy_roi",
+      "n_baseline": 15,
+      "n_control": 15,
+      "mean_baseline": 0.0006995,
+      "mean_control": 0.0003925,
+      "sd_baseline": 0.0013169,
+      "sd_control": 0.0008457,
+      "roi_ratio": 1.7822,
+      "roi_threshold": 1.25,
+      "cohens_d": 0.2839,
+      "power_note": "preregistration assumed Cohen's d>=0.8; observed d=0.28 (underpowered)",
+      "t": 0.7597,
+      "p_onetail_t": 0.227424,
+      "U": 127.0,
+      "p_onetail_mw": 0.260479,
+      "alpha": 0.01,
+      "magnitude_pass": 1,
+      "p_pass": 0,
+      "pass": 0,
+      "verdict": "NOT CONFIRMED",
+      "verdict_note": "ROI ratio 1.78x exceeds 1.25x threshold but t-test p=0.227 (Cohen's d=0.28); preregistration power analysis assumed d>=0.8 (insufficient power for n=15)."
+    }
+  }
+}

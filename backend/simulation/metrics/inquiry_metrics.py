@@ -88,8 +88,22 @@ def compute_inquiry_metrics(
     # --- Query-Response Coupling ---
     coupling = _compute_qr_coupling(type_history)
 
-    query_count   = sum(c[INTERROGATIVE] for c in type_counts.values())
+    query_count    = sum(c[INTERROGATIVE] for c in type_counts.values())
     response_count = sum(c[RESPONSE]     for c in type_counts.values())
+
+    # Per-agent type fractions (for P4 substrate-independence analysis)
+    per_agent_types: dict[str, dict] = {}
+    for agent in agents:
+        counts = type_counts[agent]
+        agent_total = max(sum(counts.values()), 1)
+        d = counts[DECLARATIVE]  / agent_total
+        q = counts[INTERROGATIVE] / agent_total
+        r = counts[RESPONSE]     / agent_total
+        per_agent_types[agent] = {
+            'DECLARE': round(d, 4),
+            'QUERY':   round(q, 4),
+            'RESPOND': round(r, 4),
+        }
 
     return {
         'type_distribution': {
@@ -97,6 +111,7 @@ def compute_inquiry_metrics(
             'QUERY':    round(query_frac,    4),
             'RESPOND':  round(response_frac, 4),
         },
+        'per_agent_types':         per_agent_types,
         'type_entropy':            type_entropy,
         'query_energy':            float(query_energy),
         'inquiry_roi':             float(inquiry_roi),
@@ -130,8 +145,10 @@ def _compute_qr_coupling(type_history: list[dict[str, int]]) -> float:
 
 def _empty_metrics() -> dict:
     """Return zeroed metrics when there is no history to analyze."""
+    _zero_dist = {'DECLARE': 0.0, 'QUERY': 0.0, 'RESPOND': 0.0}
     return {
-        'type_distribution': {'DECLARE': 0.0, 'QUERY': 0.0, 'RESPOND': 0.0},
+        'type_distribution': _zero_dist,
+        'per_agent_types':   {'A': dict(_zero_dist), 'B': dict(_zero_dist), 'C': dict(_zero_dist)},
         'type_entropy':            0.0,
         'query_energy':            0.0,
         'inquiry_roi':             0.0,
