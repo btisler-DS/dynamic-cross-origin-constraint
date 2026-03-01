@@ -1,0 +1,21 @@
+{
+  "epsilon": 0.01,
+  "delta": 0.3,
+  "n_ants": 100,
+  "n_steps": 2000,
+  "grid_size": 50,
+  "theta_decision": 0.1213,
+  "tau": 20,
+  "seed": 24,
+  "crystallization_step": 1648,
+  "SCI": 0.0015,
+  "sci_total_events": 97798,
+  "sci_resolved_events": 148,
+  "throughput": 0.3765,
+  "food_delivered": 753,
+  "final_entropy": 6.5387,
+  "mean_dominant_gradient": 4.7677,
+  "hysteresis_detected": null,
+  "formation_threshold": null,
+  "dissolution_threshold": null
+}

@@ -1,0 +1,51 @@
+{
+  "experiment": "C",
+  "description": "Coupling-window characterization",
+  "generated": "2026-03-01T10:04:18.041371",
+  "preregistration": "docs/preregistration-ant-modules.md",
+  "fixed_params": {
+    "delta": 0.1,
+    "epsilon": 0.01,
+    "theta_decision": 0.1213,
+    "n_steps": 2000,
+    "n_ants": 100,
+    "grid_size": 50
+  },
+  "conditions": [
+    {
+      "tau": 5,
+      "n_seeds": 30,
+      "mean_SCI": 0.001,
+      "sd_SCI": 0.0003,
+      "n_with_events": 30
+    },
+    {
+      "tau": 10,
+      "n_seeds": 30,
+      "mean_SCI": 0.0018,
+      "sd_SCI": 0.0005,
+      "n_with_events": 30
+    },
+    {
+      "tau": 20,
+      "n_seeds": 30,
+      "mean_SCI": 0.0033,
+      "sd_SCI": 0.0009,
+      "n_with_events": 30
+    },
+    {
+      "tau": 40,
+      "n_seeds": 30,
+      "mean_SCI": 0.0061,
+      "sd_SCI": 0.0016,
+      "n_with_events": 30
+    },
+    {
+      "tau": 80,
+      "n_seeds": 30,
+      "mean_SCI": 0.0113,
+      "sd_SCI": 0.0031,
+      "n_with_events": 30
+    }
+  ]
+}

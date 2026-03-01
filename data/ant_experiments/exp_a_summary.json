@@ -1,0 +1,93 @@
+{
+  "experiment": "A",
+  "description": "Deposition-cost sweep",
+  "generated": "2026-03-01T10:04:42.317230",
+  "preregistration": "docs/preregistration-ant-modules.md",
+  "fixed_params": {
+    "epsilon": 0.01,
+    "tau": 20,
+    "theta_decision": 0.1213,
+    "n_steps": 2000,
+    "n_ants": 100,
+    "grid_size": 50
+  },
+  "conditions": [
+    {
+      "delta": 0.04,
+      "n_seeds": 30,
+      "crystallization_rate": 0.0333,
+      "n_crystallized": 1,
+      "mean_crystallization_epoch": 1941.0,
+      "sd_crystallization_epoch": null,
+      "mean_SCI": 0.0091,
+      "mean_throughput": 0.113567,
+      "mean_final_entropy": 8.9352
+    },
+    {
+      "delta": 0.06,
+      "n_seeds": 30,
+      "crystallization_rate": 0.2,
+      "n_crystallized": 6,
+      "mean_crystallization_epoch": 1876.0,
+      "sd_crystallization_epoch": 75.3,
+      "mean_SCI": 0.0048,
+      "mean_throughput": 0.258083,
+      "mean_final_entropy": 7.2851
+    },
+    {
+      "delta": 0.08,
+      "n_seeds": 30,
+      "crystallization_rate": 0.3667,
+      "n_crystallized": 11,
+      "mean_crystallization_epoch": 1859.0,
+      "sd_crystallization_epoch": 90.9,
+      "mean_SCI": 0.0034,
+      "mean_throughput": 0.305367,
+      "mean_final_entropy": 6.9408
+    },
+    {
+      "delta": 0.1,
+      "n_seeds": 30,
+      "crystallization_rate": 0.6333,
+      "n_crystallized": 19,
+      "mean_crystallization_epoch": 1856.4,
+      "sd_crystallization_epoch": 83.0,
+      "mean_SCI": 0.0033,
+      "mean_throughput": 0.322217,
+      "mean_final_entropy": 6.7803
+    },
+    {
+      "delta": 0.15,
+      "n_seeds": 30,
+      "crystallization_rate": 0.6,
+      "n_crystallized": 18,
+      "mean_crystallization_epoch": 1824.8,
+      "sd_crystallization_epoch": 118.7,
+      "mean_SCI": 0.0038,
+      "mean_throughput": 0.353717,
+      "mean_final_entropy": 6.7884
+    },
+    {
+      "delta": 0.2,
+      "n_seeds": 30,
+      "crystallization_rate": 0.8333,
+      "n_crystallized": 25,
+      "mean_crystallization_epoch": 1774.0,
+      "sd_crystallization_epoch": 163.8,
+      "mean_SCI": 0.0028,
+      "mean_throughput": 0.377733,
+      "mean_final_entropy": 6.6612
+    },
+    {
+      "delta": 0.3,
+      "n_seeds": 30,
+      "crystallization_rate": 0.7,
+      "n_crystallized": 21,
+      "mean_crystallization_epoch": 1680.0,
+      "sd_crystallization_epoch": 148.0,
+      "mean_SCI": 0.0025,
+      "mean_throughput": 0.378183,
+      "mean_final_entropy": 6.6891
+    }
+  ]
+}
