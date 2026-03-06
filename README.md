@@ -38,7 +38,7 @@ docs/
 ## Protocols
 
 | Protocol | Description | Command |
-|----------|-------------|---------|
+|----------|-------------|----------|
 | P0 | Baseline — flat energy tax, no signal types | `python run_baseline.py --epochs 500` |
 | P1 | Interrogative Emergence — Gumbel-Softmax type head, variable costs | `python run_inquiry.py --epochs 500` |
 
@@ -56,8 +56,20 @@ uvicorn app.main:app --port 8001 --reload
 cd frontend
 npm install
 npm run dev
-# → http://localhost:5173
+# -> http://localhost:5173
 ```
+
+---
+
+## Campaign Status
+
+**240 / 1,185 runs complete (20.3%)** — campaign in progress.
+
+P2 rerun: FAILED (exit 1 after 236 min, 0/45 runs produced; needs diagnosis).
+Counter-wave discrimination: **H2 (phase-reset) supported** — DECLARE spikes persist
+in no-bonus condition, rebound timing unaffected by pressure hold.
+
+See `data/harvest_status.json` for full experiment queue status.
 
 ---
 
