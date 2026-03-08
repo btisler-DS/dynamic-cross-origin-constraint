@@ -4,7 +4,7 @@
 **Date:** 2026-03-08
 **Author:** Bruce Tisler | quantuminquiry.org | ORCID: 0009-0009-6344-5334
 **Confirmatory DOI:** [10.5281/zenodo.18738379](https://doi.org/10.5281/zenodo.18738379)
-**v2 DOI:** [10.5281/zenodo.18912653](https://doi.org/10.5281/zenodo.18912653)
+**v2 DOI:** [10.5281/zenodo.18912837](https://doi.org/10.5281/zenodo.18912837)
 **Status:** Confirmatory phase closed. Post-confirmatory phase open.
 
 ---
@@ -159,7 +159,7 @@ All work from this point is explicitly labeled **EXPLORATORY** unless a new conf
 | Version | Date | Description |
 |---|---|---|
 | v1 (original) | 2026-02-23 | Confirmatory preregistration locked — DOI: 10.5281/zenodo.18738379 |
-| v2 (this document) | 2026-03-08 | Confirmatory phase closed. Full scorecard. Quality failures disclosed. Post-confirmatory phase opened. Experiment 14 queued. — DOI: 10.5281/zenodo.18912653 |
+| v2 (this document) | 2026-03-08 | Confirmatory phase closed. Full scorecard. Quality failures disclosed. Post-confirmatory phase opened. Experiment 14 queued. — DOI: 10.5281/zenodo.18912837 |
 
 ---
 
@@ -167,4 +167,4 @@ All work from this point is explicitly labeled **EXPLORATORY** unless a new conf
 
 *Bruce Tisler | quantuminquiry.org | 2026-03-08*
 
-**Preregistration Hash**: SHA-256: 6234678aa099fedaf612641d31e78f70af8e71943916334a7f7b202fc1cece91
+**Preregistration Hash**: SHA-256: 8c31d5c54c689215aaacde856e60d79175bc050cdb2bb6e076f78b4205e953fb
