@@ -204,10 +204,9 @@ The Δ-Variable Theory proposes that interrogative structures emerge as mathemat
 
 Under these conditions, a QUERY/RESPOND protocol is the optimal solution. The theory predicts this emergence is substrate-independent — appearing in learning agents, stigmergic biological systems, and statistical language models through the same formal signature.
 
-Theoretical grounding: Puchtel (2026), *AnnA: Adaptive, non-neural Axiom* — intelligence as coherence under pressure. Interrogative emergence is the operational manifestation of regulation without command under epistemic uncertainty.
+**External validation:** AnnA (Puchtel, 2026) served as an independent examination frame during experimental development. AnnA's diagnostic questions — where does pressure accumulate, does structure persist after strain, is coherence structural or reactive — were answered by the results without having been designed into the harness. This convergence is noted, but AnnA does not ground the Δ-variable claim. The preregistration reflects the independent theoretical basis.
 
-Related work: Busemeyer & Bruza (quantum cognition formalisms), Friston (Free Energy Principle), Shannon (entropy as information). This project works in that tradition: the energetic formalism describes behavior accurately; the physical claim is held separately and remains open.
-
+Related work: Busemeyer & Bruza (quantum cognition formalisms), Friston (Free Energy Principle), Shannon (entropy as information).
 ---
 
 ## Original Development Repository
