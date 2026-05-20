@@ -5,7 +5,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18738379.svg)](https://doi.org/10.5281/zenodo.18738379)
 [![Status: Ongoing](https://img.shields.io/badge/status-ongoing-blue)]()
 [![Preregistered](https://img.shields.io/badge/preregistered-zenodo-green)]()
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
 
